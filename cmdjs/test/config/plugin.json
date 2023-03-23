@@ -1,0 +1,16 @@
+{
+
+  "testPlugin" : {
+    "desc" : "测试插件",
+    "value" : {"type" : "*", "length" : 2},
+    "option" : {
+      "all" : {"type":"*", "default":"default value for all", "required":true, "desc":"all的描述"},
+      "defaultType" : {"default":"default value for defaultType", "desc":"defaultType的描述"},
+      "number" : {"type":"number", "default":1, "required":true},
+      "string" : {"type":"string", "default":"default value for string", "required":true, "desc":"string的描述"},
+      "array" : {"type":"array", "desc":"array的描述"},
+      "none" : {"type":"none", "desc":"none的描述"},
+      "ref" : {"ref":"testRef"}
+    }
+  }
+}

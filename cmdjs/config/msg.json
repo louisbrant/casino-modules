@@ -1,0 +1,14 @@
+{
+  "info.cmdSuccessfully" : "\\033[1;32;1m命令【%s】执行成功！\\033[0m",
+  "info.noPluginDesc" : "该命令没有描述！",
+  "info.noOptionDesc" : "该选项没有描述！",
+  "err.pluginNotFound" : "\\033[1;31;1m找不到命令插件\\033[1;36;1m【%s】\\033[0m",
+  "err.pluginValue" : "\\033[1;31;1m命令【%s】不能带有参数，请检查！\\033[0m",
+  "err.pluginValueType" : "\\033[1;31;1m命令【%s】的参数应该为【%s】类型，请检查！\\033[0m",
+  "err.pluginValueCount" : "\\033[1;31;1m命令【%s】的参数个数有误，请检查！\\033[0m",
+  "err.optionNotFound" : "\\033[1;31;1m命令【%s】不存在选项【%s】，请检查！\\033[0m",
+  "err.option" : "\\033[1;31;1m命令【%s】的【%s】选项有误，请检查！\\033[0m",
+  "err.optionCount" : "\\033[1;31;1m命令【%s】的【%s】选项个数有误，请检查！\\033[0m",
+  "err.optionRequired" : "\\033[1;31;1m命令【%s】的【%s】选项是必须的，请检查！\\033[0m",
+  "err.optionType" : "\\033[1;31;1m命令【%s】的【%s】选项应该为【%s】类型，请检查！\\033[0m"
+}

@@ -1,0 +1,12 @@
+{
+    "name": "mo-utils",
+    "version": "0.0.7",
+    "main" : "index.js",
+    "dependencies" : {
+        "async" : "*"
+    },
+    "author" : {
+        "name" : "SmallAiTT",
+        "email" : "536762164@qq.com"
+    }
+}

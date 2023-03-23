@@ -1,0 +1,10 @@
+module.exports = require('./src/logger');
+module.exports.biBiz = require('./biz/biBiz.js');
+module.exports.BossObj = require('./obj/BossObj.js');
+module.exports.RealmObj = require('./obj/RealmObj.js');
+module.exports.UpStarStoneObj = require('./obj/UpStarStoneObj.js');
+module.exports.WingObj = require('./obj/WingObj.js');
+module.exports.CallBossObj = require('./obj/CallBossObj.js');
+module.exports.LotteryObj = require('./obj/LotteryObj.js');
+module.exports.MysterShopObj = require('./obj/MysterShopObj.js');
+module.exports.genuineQiObj = require('./obj/genuineQiObj.js');

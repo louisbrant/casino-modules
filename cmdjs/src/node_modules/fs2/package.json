@@ -1,0 +1,12 @@
+{
+    "name": "fs2",
+    "version": "0.1.0",
+    "main" : "fs2.js",
+    "dependencies" : {
+        "async" : "*"
+    },
+    "author" : {
+        "name" : "SmallAiTT",
+        "email" : "536762164@qq.com"
+    }
+}

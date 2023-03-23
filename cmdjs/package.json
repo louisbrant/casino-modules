@@ -1,0 +1,10 @@
+{
+  "name": "cmdjs",
+  "version": "0.0.14",
+  "dependencies" : {
+  },
+  "author" : {
+    "name" : "SmallAiTT",
+    "email" : "536762164@qq.com"
+  }
+}

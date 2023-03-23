@@ -1,0 +1,11 @@
+{
+    "name": "logger",
+    "version": "0.1.0",
+    "main" : "logger.js",
+    "dependencies" : {
+    },
+    "author" : {
+        "name" : "SmallAiTT",
+        "email" : "536762164@qq.com"
+    }
+}

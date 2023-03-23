@@ -1,0 +1,39 @@
+{
+  "name": "mqtt-connection",
+  "version": "3.2.0",
+  "description": "Stream-based Connection object for MQTT, extracted from MQTT.js",
+  "main": "connection.js",
+  "contributors": [
+    "Matteo Collina <matteo.collina@gmail.com> (https://github.com/mcollina)",
+    "Adam Rudd <adamvrr@gmail.com>"
+  ],
+  "scripts": {
+    "test": "mocha test/ && standard"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mqttjs/mqtt-connection.git"
+  },
+  "keywords": [
+    "mqtt",
+    "connection",
+    "server"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mqttjs/mqtt-connection/issues"
+  },
+  "homepage": "https://github.com/mqttjs/mqtt-connection",
+  "dependencies": {
+    "duplexify": "^3.5.1",
+    "inherits": "^2.0.3",
+    "mqtt-packet": "^5.4.0",
+    "safe-buffer": "^5.1.1",
+    "through2": "^2.0.1"
+  },
+  "devDependencies": {
+    "mocha": "^4.0.0",
+    "should": "^13.0.0",
+    "standard": "^10.0.3"
+  }
+}

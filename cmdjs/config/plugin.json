@@ -1,0 +1,7 @@
+{
+  "help" : {
+    "short" : "h",
+    "desc" : "帮助命令，后面接具体命令则提示相应的命令帮助信息。\n例如：\\033[1;34;1myourCmd help plugin1 plugin2\\033[0m",
+    "value" : {"type" : "array"}
+  }
+}
