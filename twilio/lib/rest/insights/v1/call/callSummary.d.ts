@@ -1,16 +1,16 @@
 /// <reference types="node" />
 import { inspect, InspectOptions } from "util";
 import V1 from "../../V1";
-export type SummaryAnsweredBy = "unknown" | "machine_start" | "machine_end_beep" | "machine_end_silence" | "machine_end_other" | "human" | "fax";
-export type SummaryCallState = "ringing" | "completed" | "busy" | "fail" | "noanswer" | "canceled" | "answered" | "undialed";
-export type SummaryCallType = "carrier" | "sip" | "trunking" | "client";
-export type SummaryProcessingState = "complete" | "partial";
+export type CallSummaryAnsweredBy = "unknown" | "machine_start" | "machine_end_beep" | "machine_end_silence" | "machine_end_other" | "human" | "fax";
+export type CallSummaryCallState = "ringing" | "completed" | "busy" | "fail" | "noanswer" | "canceled" | "answered" | "undialed";
+export type CallSummaryCallType = "carrier" | "sip" | "trunking" | "client";
+export type CallSummaryProcessingState = "complete" | "partial";
 /**
  * Options to pass to fetch a CallSummaryInstance
  */
 export interface CallSummaryContextFetchOptions {
     /**  */
-    processingState?: SummaryProcessingState;
+    processingState?: CallSummaryProcessingState;
 }
 export interface CallSummaryContext {
     /**
@@ -56,10 +56,10 @@ export declare class CallSummaryContextImpl implements CallSummaryContext {
 interface CallSummaryResource {
     account_sid: string;
     call_sid: string;
-    call_type: SummaryCallType;
-    call_state: SummaryCallState;
-    answered_by: SummaryAnsweredBy;
-    processing_state: SummaryProcessingState;
+    call_type: CallSummaryCallType;
+    call_state: CallSummaryCallState;
+    answered_by: CallSummaryAnsweredBy;
+    processing_state: CallSummaryProcessingState;
     created_time: Date;
     start_time: Date;
     end_time: Date;
@@ -85,10 +85,10 @@ export declare class CallSummaryInstance {
     constructor(_version: V1, payload: CallSummaryResource, callSid: string);
     accountSid: string;
     callSid: string;
-    callType: SummaryCallType;
-    callState: SummaryCallState;
-    answeredBy: SummaryAnsweredBy;
-    processingState: SummaryProcessingState;
+    callType: CallSummaryCallType;
+    callState: CallSummaryCallState;
+    answeredBy: CallSummaryAnsweredBy;
+    processingState: CallSummaryProcessingState;
     createdTime: Date;
     startTime: Date;
     endTime: Date;
@@ -132,10 +132,10 @@ export declare class CallSummaryInstance {
     toJSON(): {
         accountSid: string;
         callSid: string;
-        callType: SummaryCallType;
-        callState: SummaryCallState;
-        answeredBy: SummaryAnsweredBy;
-        processingState: SummaryProcessingState;
+        callType: CallSummaryCallType;
+        callState: CallSummaryCallState;
+        answeredBy: CallSummaryAnsweredBy;
+        processingState: CallSummaryProcessingState;
         createdTime: Date;
         startTime: Date;
         endTime: Date;

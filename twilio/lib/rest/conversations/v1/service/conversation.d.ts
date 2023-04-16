@@ -6,21 +6,21 @@ import V1 from "../../V1";
 import { MessageListInstance } from "./conversation/message";
 import { ParticipantListInstance } from "./conversation/participant";
 import { WebhookListInstance } from "./conversation/webhook";
-export type ServiceConversationState = "inactive" | "active" | "closed";
-export type ServiceConversationWebhookEnabledType = "true" | "false";
+export type ConversationState = "inactive" | "active" | "closed";
+export type ConversationWebhookEnabledType = "true" | "false";
 /**
  * Options to pass to remove a ConversationInstance
  */
 export interface ConversationContextRemoveOptions {
     /** The X-Twilio-Webhook-Enabled HTTP request header */
-    xTwilioWebhookEnabled?: ServiceConversationWebhookEnabledType;
+    xTwilioWebhookEnabled?: ConversationWebhookEnabledType;
 }
 /**
  * Options to pass to update a ConversationInstance
  */
 export interface ConversationContextUpdateOptions {
     /** The X-Twilio-Webhook-Enabled HTTP request header */
-    xTwilioWebhookEnabled?: ServiceConversationWebhookEnabledType;
+    xTwilioWebhookEnabled?: ConversationWebhookEnabledType;
     /** The human-readable name of this conversation, limited to 256 characters. Optional. */
     friendlyName?: string;
     /** The date that this resource was created. */
@@ -32,7 +32,7 @@ export interface ConversationContextUpdateOptions {
     /** The unique ID of the [Messaging Service](https://www.twilio.com/docs/sms/services/api) this conversation belongs to. */
     messagingServiceSid?: string;
     /**  */
-    state?: ServiceConversationState;
+    state?: ConversationState;
     /** ISO8601 duration when conversation will be switched to `inactive` state. Minimum value for this timer is 1 minute. */
     "timers.inactive"?: string;
     /** ISO8601 duration when conversation will be switched to `closed` state. Minimum value for this timer is 10 minutes. */
@@ -45,7 +45,7 @@ export interface ConversationContextUpdateOptions {
  */
 export interface ConversationListInstanceCreateOptions {
     /** The X-Twilio-Webhook-Enabled HTTP request header */
-    xTwilioWebhookEnabled?: ServiceConversationWebhookEnabledType;
+    xTwilioWebhookEnabled?: ConversationWebhookEnabledType;
     /** The human-readable name of this conversation, limited to 256 characters. Optional. */
     friendlyName?: string;
     /** An application-defined string that uniquely identifies the resource. It can be used to address the resource in place of the resource\\\'s `sid` in the URL. */
@@ -59,7 +59,7 @@ export interface ConversationListInstanceCreateOptions {
     /** The date that this resource was last updated. */
     dateUpdated?: Date;
     /**  */
-    state?: ServiceConversationState;
+    state?: ConversationState;
     /** ISO8601 duration when conversation will be switched to `inactive` state. Minimum value for this timer is 1 minute. */
     "timers.inactive"?: string;
     /** ISO8601 duration when conversation will be switched to `closed` state. Minimum value for this timer is 10 minutes. */
@@ -69,6 +69,12 @@ export interface ConversationListInstanceCreateOptions {
  * Options to pass to each
  */
 export interface ConversationListInstanceEachOptions {
+    /** Start date in ISO8601 format for sorting and filtering list of Conversations. */
+    startDate?: string;
+    /** End date in ISO8601 format for sorting and filtering list of Conversations. */
+    endDate?: string;
+    /** State for sorting and filtering list of Conversations. Can be `active`, `inactive` or `closed` */
+    state?: ConversationState;
     /** How many resources to return in each list page. The default is 50, and the maximum is 1000. */
     pageSize?: number;
     /** Function to process each record. If this and a positional callback are passed, this one will be used */
@@ -82,6 +88,12 @@ export interface ConversationListInstanceEachOptions {
  * Options to pass to list
  */
 export interface ConversationListInstanceOptions {
+    /** Start date in ISO8601 format for sorting and filtering list of Conversations. */
+    startDate?: string;
+    /** End date in ISO8601 format for sorting and filtering list of Conversations. */
+    endDate?: string;
+    /** State for sorting and filtering list of Conversations. Can be `active`, `inactive` or `closed` */
+    state?: ConversationState;
     /** How many resources to return in each list page. The default is 50, and the maximum is 1000. */
     pageSize?: number;
     /** Upper limit for the number of records to return. list() guarantees never to return more than limit. Default is no limit */
@@ -91,6 +103,12 @@ export interface ConversationListInstanceOptions {
  * Options to pass to page
  */
 export interface ConversationListInstancePageOptions {
+    /** Start date in ISO8601 format for sorting and filtering list of Conversations. */
+    startDate?: string;
+    /** End date in ISO8601 format for sorting and filtering list of Conversations. */
+    endDate?: string;
+    /** State for sorting and filtering list of Conversations. Can be `active`, `inactive` or `closed` */
+    state?: ConversationState;
     /** How many resources to return in each list page. The default is 50, and the maximum is 1000. */
     pageSize?: number;
     /** Page Number, this value is simply for client state */
@@ -187,7 +205,7 @@ interface ConversationResource {
     friendly_name: string;
     unique_name: string;
     attributes: string;
-    state: ServiceConversationState;
+    state: ConversationState;
     date_created: Date;
     date_updated: Date;
     timers: any;
@@ -228,7 +246,7 @@ export declare class ConversationInstance {
      * An optional string metadata field you can use to store any data you wish. The string value must contain structurally valid JSON if specified.  **Note** that if the attributes are not set \"{}\" will be returned.
      */
     attributes: string;
-    state: ServiceConversationState;
+    state: ConversationState;
     /**
      * The date that this resource was created.
      */
@@ -318,7 +336,7 @@ export declare class ConversationInstance {
         friendlyName: string;
         uniqueName: string;
         attributes: string;
-        state: ServiceConversationState;
+        state: ConversationState;
         dateCreated: Date;
         dateUpdated: Date;
         timers: any;

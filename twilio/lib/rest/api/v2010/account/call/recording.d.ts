@@ -3,14 +3,14 @@ import { inspect, InspectOptions } from "util";
 import Page, { TwilioResponsePayload } from "../../../../../base/Page";
 import Response from "../../../../../http/response";
 import V2010 from "../../../V2010";
-export type CallRecordingSource = "DialVerb" | "Conference" | "OutboundAPI" | "Trunking" | "RecordVerb" | "StartCallRecordingAPI" | "StartConferenceRecordingAPI";
-export type CallRecordingStatus = "in-progress" | "paused" | "stopped" | "processing" | "completed" | "absent";
+export type RecordingSource = "DialVerb" | "Conference" | "OutboundAPI" | "Trunking" | "RecordVerb" | "StartCallRecordingAPI" | "StartConferenceRecordingAPI";
+export type RecordingStatus = "in-progress" | "paused" | "stopped" | "processing" | "completed" | "absent";
 /**
  * Options to pass to update a RecordingInstance
  */
 export interface RecordingContextUpdateOptions {
     /**  */
-    status: CallRecordingStatus;
+    status: RecordingStatus;
     /** Whether to record during a pause. Can be: `skip` or `silence` and the default is `silence`. `skip` does not record during the pause period, while `silence` will replace the actual audio of the call with silence during the pause period. This parameter only applies when setting `status` is set to `paused`. */
     pauseBehavior?: string;
 }
@@ -152,9 +152,9 @@ interface RecordingResource {
     uri: string;
     encryption_details: any;
     price_unit: string;
-    status: CallRecordingStatus;
+    status: RecordingStatus;
     channels: number;
-    source: CallRecordingSource;
+    source: RecordingSource;
     error_code: number;
     track: string;
 }
@@ -215,12 +215,12 @@ export declare class RecordingInstance {
      * The currency used in the `price` property. Example: `USD`.
      */
     priceUnit: string;
-    status: CallRecordingStatus;
+    status: RecordingStatus;
     /**
      * The number of channels in the final recording file.  Can be: `1`, or `2`. Separating a two leg call into two separate channels of the recording file is supported in [Dial](https://www.twilio.com/docs/voice/twiml/dial#attributes-record) and [Outbound Rest API](https://www.twilio.com/docs/voice/make-calls) record options.
      */
     channels: number;
-    source: CallRecordingSource;
+    source: RecordingSource;
     /**
      * The error code that describes why the recording is `absent`. The error code is described in our [Error Dictionary](https://www.twilio.com/docs/api/errors). This value is null if the recording `status` is not `absent`.
      */
@@ -274,9 +274,9 @@ export declare class RecordingInstance {
         uri: string;
         encryptionDetails: any;
         priceUnit: string;
-        status: CallRecordingStatus;
+        status: RecordingStatus;
         channels: number;
-        source: CallRecordingSource;
+        source: RecordingSource;
         errorCode: number;
         track: string;
     };

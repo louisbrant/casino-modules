@@ -3,7 +3,7 @@ import { inspect, InspectOptions } from "util";
 import Page, { TwilioResponsePayload } from "../../../../../base/Page";
 import Response from "../../../../../http/response";
 import V2010 from "../../../V2010";
-export type RecordingTranscriptionStatus = "in-progress" | "completed" | "failed";
+export type TranscriptionStatus = "in-progress" | "completed" | "failed";
 /**
  * Options to pass to each
  */
@@ -93,7 +93,7 @@ interface TranscriptionResource {
     price_unit: string;
     recording_sid: string;
     sid: string;
-    status: RecordingTranscriptionStatus;
+    status: TranscriptionStatus;
     transcription_text: string;
     type: string;
     uri: string;
@@ -139,7 +139,7 @@ export declare class TranscriptionInstance {
      * The unique string that that we created to identify the Transcription resource.
      */
     sid: string;
-    status: RecordingTranscriptionStatus;
+    status: TranscriptionStatus;
     /**
      * The text content of the transcription.
      */
@@ -184,7 +184,7 @@ export declare class TranscriptionInstance {
         priceUnit: string;
         recordingSid: string;
         sid: string;
-        status: RecordingTranscriptionStatus;
+        status: TranscriptionStatus;
         transcriptionText: string;
         type: string;
         uri: string;

@@ -101,7 +101,6 @@ class PhoneNumberInstance {
         this.lineTypeIntelligence = payload.line_type_intelligence;
         this.identityMatch = payload.identity_match;
         this.smsPumpingRisk = payload.sms_pumping_risk;
-        this.disposablePhoneNumberRisk = payload.disposable_phone_number_risk;
         this.url = payload.url;
         this._solution = { phoneNumber: phoneNumber || this.phoneNumber };
     }
@@ -134,7 +133,6 @@ class PhoneNumberInstance {
             lineTypeIntelligence: this.lineTypeIntelligence,
             identityMatch: this.identityMatch,
             smsPumpingRisk: this.smsPumpingRisk,
-            disposablePhoneNumberRisk: this.disposablePhoneNumberRisk,
             url: this.url,
         };
     }

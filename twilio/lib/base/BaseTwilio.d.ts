@@ -1,6 +1,7 @@
 /// <reference types="node" />
 import RequestClient from "./RequestClient";
 import { HttpMethod } from "../interfaces";
+import { Headers } from "../http/request";
 declare namespace Twilio {
     interface ClientOpts {
         httpClient?: RequestClient;

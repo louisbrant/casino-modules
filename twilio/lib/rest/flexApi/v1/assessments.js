@@ -12,9 +12,13 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AssessmentsListInstance = exports.AssessmentsInstance = exports.AssessmentsContextImpl = void 0;
+exports.AssessmentsPage = exports.AssessmentsListInstance = exports.AssessmentsInstance = exports.AssessmentsContextImpl = void 0;
 const util_1 = require("util");
+const Page_1 = __importDefault(require("../../../base/Page"));
 const deserialize = require("../../../base/deserialize");
 const serialize = require("../../../base/serialize");
 const utility_1 = require("../../../base/utility");
@@ -205,6 +209,47 @@ function AssessmentsListInstance(version) {
         operationPromise = instance._version.setPromiseCallback(operationPromise, callback);
         return operationPromise;
     };
+    instance.page = function page(params, callback) {
+        if (params instanceof Function) {
+            callback = params;
+            params = {};
+        }
+        else {
+            params = params || {};
+        }
+        let data = {};
+        if (params["segmentId"] !== undefined)
+            data["SegmentId"] = params["segmentId"];
+        if (params["pageSize"] !== undefined)
+            data["PageSize"] = params["pageSize"];
+        if (params.pageNumber !== undefined)
+            data["Page"] = params.pageNumber;
+        if (params.pageToken !== undefined)
+            data["PageToken"] = params.pageToken;
+        const headers = {};
+        if (params["token"] !== undefined)
+            headers["Token"] = params["token"];
+        let operationVersion = version, operationPromise = operationVersion.page({
+            uri: instance._uri,
+            method: "get",
+            params: data,
+            headers,
+        });
+        operationPromise = operationPromise.then((payload) => new AssessmentsPage(operationVersion, payload, instance._solution));
+        operationPromise = instance._version.setPromiseCallback(operationPromise, callback);
+        return operationPromise;
+    };
+    instance.each = instance._version.each;
+    instance.list = instance._version.list;
+    instance.getPage = function getPage(targetUrl, callback) {
+        const operationPromise = instance._version._domain.twilio.request({
+            method: "get",
+            uri: targetUrl,
+        });
+        let pagePromise = operationPromise.then((payload) => new AssessmentsPage(instance._version, payload, instance._solution));
+        pagePromise = instance._version.setPromiseCallback(pagePromise, callback);
+        return pagePromise;
+    };
     instance.toJSON = function toJSON() {
         return instance._solution;
     };
@@ -214,3 +259,27 @@ function AssessmentsListInstance(version) {
     return instance;
 }
 exports.AssessmentsListInstance = AssessmentsListInstance;
+class AssessmentsPage extends Page_1.default {
+    /**
+     * Initialize the AssessmentsPage
+     *
+     * @param version - Version of the resource
+     * @param response - Response from the API
+     * @param solution - Path solution
+     */
+    constructor(version, response, solution) {
+        super(version, response, solution);
+    }
+    /**
+     * Build an instance of AssessmentsInstance
+     *
+     * @param payload - Payload response from the API
+     */
+    getInstance(payload) {
+        return new AssessmentsInstance(this._version, payload);
+    }
+    [util_1.inspect.custom](depth, options) {
+        return (0, util_1.inspect)(this.toJSON(), options);
+    }
+}
+exports.AssessmentsPage = AssessmentsPage;

@@ -162,7 +162,6 @@ export declare class CompositionHookContextImpl implements CompositionHookContex
     toJSON(): CompositionHookContextSolution;
     [inspect.custom](_depth: any, options: InspectOptions): string;
 }
-export type CompositionHookStatusCallbackMethod = "HEAD" | "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
 interface CompositionHookPayload extends TwilioResponsePayload {
     composition_hooks: CompositionHookResource[];
 }
@@ -180,7 +179,7 @@ interface CompositionHookResource {
     trim: boolean;
     format: CompositionHookFormat;
     status_callback: string;
-    status_callback_method: CompositionHookStatusCallbackMethod;
+    status_callback_method: string;
     url: string;
 }
 export declare class CompositionHookInstance {
@@ -240,7 +239,7 @@ export declare class CompositionHookInstance {
     /**
      * The HTTP method we should use to call `status_callback`. Can be `POST` or `GET` and defaults to `POST`.
      */
-    statusCallbackMethod: CompositionHookStatusCallbackMethod;
+    statusCallbackMethod: string;
     /**
      * The absolute URL of the resource.
      */
@@ -290,7 +289,7 @@ export declare class CompositionHookInstance {
         trim: boolean;
         format: CompositionHookFormat;
         statusCallback: string;
-        statusCallbackMethod: CompositionHookStatusCallbackMethod;
+        statusCallbackMethod: string;
         url: string;
     };
     [inspect.custom](_depth: any, options: InspectOptions): string;

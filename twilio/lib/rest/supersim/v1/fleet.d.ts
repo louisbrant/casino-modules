@@ -135,8 +135,6 @@ export declare class FleetContextImpl implements FleetContext {
     toJSON(): FleetContextSolution;
     [inspect.custom](_depth: any, options: InspectOptions): string;
 }
-export type FleetSmsCommandsMethod = "HEAD" | "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
-export type FleetIpCommandsMethod = "HEAD" | "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
 interface FleetPayload extends TwilioResponsePayload {
     fleets: FleetResource[];
 }
@@ -152,10 +150,10 @@ interface FleetResource {
     data_metering: FleetDataMetering;
     sms_commands_enabled: boolean;
     sms_commands_url: string;
-    sms_commands_method: FleetSmsCommandsMethod;
+    sms_commands_method: string;
     network_access_profile_sid: string;
     ip_commands_url: string;
-    ip_commands_method: FleetIpCommandsMethod;
+    ip_commands_method: string;
 }
 export declare class FleetInstance {
     protected _version: V1;
@@ -206,7 +204,7 @@ export declare class FleetInstance {
     /**
      * A string representing the HTTP method to use when making a request to `sms_commands_url`. Can be one of `POST` or `GET`. Defaults to `POST`.
      */
-    smsCommandsMethod: FleetSmsCommandsMethod;
+    smsCommandsMethod: string;
     /**
      * The SID of the Network Access Profile that controls which cellular networks the Fleet\'s SIMs can connect to.
      */
@@ -218,7 +216,7 @@ export declare class FleetInstance {
     /**
      * A string representing the HTTP method to use when making a request to `ip_commands_url`. Can be one of `POST` or `GET`. Defaults to `POST`.
      */
-    ipCommandsMethod: FleetIpCommandsMethod;
+    ipCommandsMethod: string;
     private get _proxy();
     /**
      * Fetch a FleetInstance
@@ -262,10 +260,10 @@ export declare class FleetInstance {
         dataMetering: "payg";
         smsCommandsEnabled: boolean;
         smsCommandsUrl: string;
-        smsCommandsMethod: FleetSmsCommandsMethod;
+        smsCommandsMethod: string;
         networkAccessProfileSid: string;
         ipCommandsUrl: string;
-        ipCommandsMethod: FleetIpCommandsMethod;
+        ipCommandsMethod: string;
     };
     [inspect.custom](_depth: any, options: InspectOptions): string;
 }

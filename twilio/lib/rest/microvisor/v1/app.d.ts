@@ -3,6 +3,7 @@ import { inspect, InspectOptions } from "util";
 import Page, { TwilioResponsePayload } from "../../../base/Page";
 import Response from "../../../http/response";
 import V1 from "../V1";
+import { AppManifestListInstance } from "./app/appManifest";
 /**
  * Options to pass to each
  */
@@ -37,6 +38,7 @@ export interface AppListInstancePageOptions {
     pageToken?: string;
 }
 export interface AppContext {
+    appManifests: AppManifestListInstance;
     /**
      * Remove a AppInstance
      *
@@ -66,7 +68,9 @@ export declare class AppContextImpl implements AppContext {
     protected _version: V1;
     protected _solution: AppContextSolution;
     protected _uri: string;
+    protected _appManifests?: AppManifestListInstance;
     constructor(_version: V1, sid: string);
+    get appManifests(): AppManifestListInstance;
     remove(callback?: (error: Error | null, item?: boolean) => any): Promise<boolean>;
     fetch(callback?: (error: Error | null, item?: AppInstance) => any): Promise<AppInstance>;
     /**
@@ -88,6 +92,7 @@ interface AppResource {
     date_created: Date;
     date_updated: Date;
     url: string;
+    links: Record<string, string>;
 }
 export declare class AppInstance {
     protected _version: V1;
@@ -122,6 +127,7 @@ export declare class AppInstance {
      * The URL of this resource.
      */
     url: string;
+    links: Record<string, string>;
     private get _proxy();
     /**
      * Remove a AppInstance
@@ -140,6 +146,10 @@ export declare class AppInstance {
      */
     fetch(callback?: (error: Error | null, item?: AppInstance) => any): Promise<AppInstance>;
     /**
+     * Access the appManifests.
+     */
+    appManifests(): AppManifestListInstance;
+    /**
      * Provide a user-friendly representation
      *
      * @returns Object
@@ -152,6 +162,7 @@ export declare class AppInstance {
         dateCreated: Date;
         dateUpdated: Date;
         url: string;
+        links: Record<string, string>;
     };
     [inspect.custom](_depth: any, options: InspectOptions): string;
 }

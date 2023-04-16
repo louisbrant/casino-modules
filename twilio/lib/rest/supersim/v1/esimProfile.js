@@ -64,6 +64,8 @@ class EsimProfileInstance {
         this.status = payload.status;
         this.eid = payload.eid;
         this.smdpPlusAddress = payload.smdp_plus_address;
+        this.matchingId = payload.matching_id;
+        this.activationCode = payload.activation_code;
         this.errorCode = payload.error_code;
         this.errorMessage = payload.error_message;
         this.dateCreated = deserialize.iso8601DateTime(payload.date_created);
@@ -101,6 +103,8 @@ class EsimProfileInstance {
             status: this.status,
             eid: this.eid,
             smdpPlusAddress: this.smdpPlusAddress,
+            matchingId: this.matchingId,
+            activationCode: this.activationCode,
             errorCode: this.errorCode,
             errorMessage: this.errorMessage,
             dateCreated: this.dateCreated,
@@ -134,6 +138,8 @@ function EsimProfileListInstance(version) {
             data["CallbackUrl"] = params["callbackUrl"];
         if (params["callbackMethod"] !== undefined)
             data["CallbackMethod"] = params["callbackMethod"];
+        if (params["generateMatchingId"] !== undefined)
+            data["GenerateMatchingId"] = serialize.bool(params["generateMatchingId"]);
         if (params["eid"] !== undefined)
             data["Eid"] = params["eid"];
         const headers = {};

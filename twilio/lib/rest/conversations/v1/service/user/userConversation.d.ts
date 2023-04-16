@@ -3,14 +3,14 @@ import { inspect, InspectOptions } from "util";
 import Page, { TwilioResponsePayload } from "../../../../../base/Page";
 import Response from "../../../../../http/response";
 import V1 from "../../../V1";
-export type ServiceUserConversationNotificationLevel = "default" | "muted";
-export type ServiceUserConversationState = "inactive" | "active" | "closed";
+export type UserConversationNotificationLevel = "default" | "muted";
+export type UserConversationState = "inactive" | "active" | "closed";
 /**
  * Options to pass to update a UserConversationInstance
  */
 export interface UserConversationContextUpdateOptions {
     /**  */
-    notificationLevel?: ServiceUserConversationNotificationLevel;
+    notificationLevel?: UserConversationNotificationLevel;
     /** The date of the last message read in conversation by the user, given in ISO 8601 format. */
     lastReadTimestamp?: Date;
     /** The index of the last Message in the Conversation that the Participant has read. */
@@ -122,13 +122,13 @@ interface UserConversationResource {
     participant_sid: string;
     user_sid: string;
     friendly_name: string;
-    conversation_state: ServiceUserConversationState;
+    conversation_state: UserConversationState;
     timers: any;
     attributes: string;
     date_created: Date;
     date_updated: Date;
     created_by: string;
-    notification_level: ServiceUserConversationNotificationLevel;
+    notification_level: UserConversationNotificationLevel;
     unique_name: string;
     url: string;
     links: Record<string, string>;
@@ -170,7 +170,7 @@ export declare class UserConversationInstance {
      * The human-readable name of this conversation, limited to 256 characters. Optional.
      */
     friendlyName: string;
-    conversationState: ServiceUserConversationState;
+    conversationState: UserConversationState;
     /**
      * Timer date values representing state update for this conversation.
      */
@@ -191,7 +191,7 @@ export declare class UserConversationInstance {
      * Identity of the creator of this Conversation.
      */
     createdBy: string;
-    notificationLevel: ServiceUserConversationNotificationLevel;
+    notificationLevel: UserConversationNotificationLevel;
     /**
      * An application-defined string that uniquely identifies the Conversation resource. It can be used to address the resource in place of the resource\'s `conversation_sid` in the URL.
      */
@@ -249,13 +249,13 @@ export declare class UserConversationInstance {
         participantSid: string;
         userSid: string;
         friendlyName: string;
-        conversationState: ServiceUserConversationState;
+        conversationState: UserConversationState;
         timers: any;
         attributes: string;
         dateCreated: Date;
         dateUpdated: Date;
         createdBy: string;
-        notificationLevel: ServiceUserConversationNotificationLevel;
+        notificationLevel: UserConversationNotificationLevel;
         uniqueName: string;
         url: string;
         links: Record<string, string>;

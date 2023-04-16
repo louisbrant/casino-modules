@@ -91,7 +91,7 @@ class DomainCertsInstance {
         this.domainName = payload.domain_name;
         this.certificateSid = payload.certificate_sid;
         this.url = payload.url;
-        this.validated = payload.validated;
+        this.certInValidation = payload.cert_in_validation;
         this._solution = { domainSid: domainSid || this.domainSid };
     }
     get _proxy() {
@@ -137,7 +137,7 @@ class DomainCertsInstance {
             domainName: this.domainName,
             certificateSid: this.certificateSid,
             url: this.url,
-            validated: this.validated,
+            certInValidation: this.certInValidation,
         };
     }
     [util_1.inspect.custom](_depth, options) {

@@ -118,7 +118,6 @@ export declare class PlayerStreamerContextImpl implements PlayerStreamerContext 
     toJSON(): PlayerStreamerContextSolution;
     [inspect.custom](_depth: any, options: InspectOptions): string;
 }
-export type PlayerStreamerStatusCallbackMethod = "HEAD" | "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
 interface PlayerStreamerPayload extends TwilioResponsePayload {
     player_streamers: PlayerStreamerResource[];
 }
@@ -132,7 +131,7 @@ interface PlayerStreamerResource {
     status: PlayerStreamerStatus;
     url: string;
     status_callback: string;
-    status_callback_method: PlayerStreamerStatusCallbackMethod;
+    status_callback_method: string;
     ended_reason: PlayerStreamerEndedReason;
     max_duration: number;
 }
@@ -177,7 +176,7 @@ export declare class PlayerStreamerInstance {
     /**
      * The HTTP method Twilio should use to call the `status_callback` URL. Can be `POST` or `GET` and the default is `POST`.
      */
-    statusCallbackMethod: PlayerStreamerStatusCallbackMethod;
+    statusCallbackMethod: string;
     endedReason: PlayerStreamerEndedReason;
     /**
      * The maximum time, in seconds, that the PlayerStreamer is active (`created` or `started`) before automatically ends. The default value is 300 seconds, and the maximum value is 90000 seconds. Once this maximum duration is reached, Twilio will end the PlayerStreamer, regardless of whether media is still streaming.
@@ -220,7 +219,7 @@ export declare class PlayerStreamerInstance {
         status: PlayerStreamerStatus;
         url: string;
         statusCallback: string;
-        statusCallbackMethod: PlayerStreamerStatusCallbackMethod;
+        statusCallbackMethod: string;
         endedReason: PlayerStreamerEndedReason;
         maxDuration: number;
     };

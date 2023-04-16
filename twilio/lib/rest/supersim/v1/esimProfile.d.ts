@@ -12,6 +12,8 @@ export interface EsimProfileListInstanceCreateOptions {
     callbackUrl?: string;
     /** The HTTP method we should use to call `callback_url`. Can be: `GET` or `POST` and the default is POST. */
     callbackMethod?: string;
+    /** When set to `true`, a value for `Eid` does not need to be provided. Instead, when the eSIM profile is reserved, a matching ID will be generated and returned via the `matching_id` property. This identifies the specific eSIM profile that can be used by any capable device to claim and download the profile. */
+    generateMatchingId?: boolean;
     /** Identifier of the eUICC that will claim the eSIM Profile. */
     eid?: string;
 }
@@ -109,6 +111,8 @@ interface EsimProfileResource {
     status: EsimProfileStatus;
     eid: string;
     smdp_plus_address: string;
+    matching_id: string;
+    activation_code: string;
     error_code: string;
     error_message: string;
     date_created: Date;
@@ -145,6 +149,14 @@ export declare class EsimProfileInstance {
      * Address of the SM-DP+ server from which the Profile will be downloaded. The URL will appear once the eSIM Profile reaches the status `available`.
      */
     smdpPlusAddress: string;
+    /**
+     * Unique identifier of the eSIM profile that can be used to identify and download the eSIM profile from the SM-DP+ server. Populated if `generate_matching_id` is set to `true` when creating the eSIM profile reservation.
+     */
+    matchingId: string;
+    /**
+     * Combined machine-readable activation code for acquiring an eSIM Profile with the Activation Code download method. Can be used in a QR code to download an eSIM profile.
+     */
+    activationCode: string;
     /**
      * Code indicating the failure if the download of the SIM Profile failed and the eSIM Profile is in `failed` state.
      */
@@ -187,6 +199,8 @@ export declare class EsimProfileInstance {
         status: EsimProfileStatus;
         eid: string;
         smdpPlusAddress: string;
+        matchingId: string;
+        activationCode: string;
         errorCode: string;
         errorMessage: string;
         dateCreated: Date;

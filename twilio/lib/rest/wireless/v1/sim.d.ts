@@ -176,11 +176,6 @@ export declare class SimContextImpl implements SimContext {
     toJSON(): SimContextSolution;
     [inspect.custom](_depth: any, options: InspectOptions): string;
 }
-export type SimCommandsCallbackMethod = "HEAD" | "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
-export type SimSmsFallbackMethod = "HEAD" | "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
-export type SimSmsMethod = "HEAD" | "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
-export type SimVoiceFallbackMethod = "HEAD" | "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
-export type SimVoiceMethod = "HEAD" | "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
 interface SimPayload extends TwilioResponsePayload {
     sims: SimResource[];
 }
@@ -195,14 +190,14 @@ interface SimResource {
     status: SimStatus;
     reset_status: SimResetStatus;
     commands_callback_url: string;
-    commands_callback_method: SimCommandsCallbackMethod;
-    sms_fallback_method: SimSmsFallbackMethod;
+    commands_callback_method: string;
+    sms_fallback_method: string;
     sms_fallback_url: string;
-    sms_method: SimSmsMethod;
+    sms_method: string;
     sms_url: string;
-    voice_fallback_method: SimVoiceFallbackMethod;
+    voice_fallback_method: string;
     voice_fallback_url: string;
-    voice_method: SimVoiceMethod;
+    voice_method: string;
     voice_url: string;
     date_created: Date;
     date_updated: Date;
@@ -252,11 +247,11 @@ export declare class SimInstance {
     /**
      * The HTTP method we use to call `commands_callback_url`.  Can be: `POST` or `GET`. Default is `POST`.
      */
-    commandsCallbackMethod: SimCommandsCallbackMethod;
+    commandsCallbackMethod: string;
     /**
      * Deprecated.
      */
-    smsFallbackMethod: SimSmsFallbackMethod;
+    smsFallbackMethod: string;
     /**
      * Deprecated.
      */
@@ -264,7 +259,7 @@ export declare class SimInstance {
     /**
      * Deprecated.
      */
-    smsMethod: SimSmsMethod;
+    smsMethod: string;
     /**
      * Deprecated.
      */
@@ -272,7 +267,7 @@ export declare class SimInstance {
     /**
      * Deprecated. The HTTP method we use to call `voice_fallback_url`. Can be: `GET` or `POST`. Default is `POST`.
      */
-    voiceFallbackMethod: SimVoiceFallbackMethod;
+    voiceFallbackMethod: string;
     /**
      * Deprecated. The URL we call using the `voice_fallback_method` when an error occurs while retrieving or executing the TwiML requested from `voice_url`.
      */
@@ -280,7 +275,7 @@ export declare class SimInstance {
     /**
      * Deprecated. The HTTP method we use to call `voice_url`. Can be: `GET` or `POST`. Default is `POST`.
      */
-    voiceMethod: SimVoiceMethod;
+    voiceMethod: string;
     /**
      * Deprecated. The URL we call using the `voice_method` when the SIM-connected device makes a voice call.
      */
@@ -363,14 +358,14 @@ export declare class SimInstance {
         status: SimStatus;
         resetStatus: "resetting";
         commandsCallbackUrl: string;
-        commandsCallbackMethod: SimCommandsCallbackMethod;
-        smsFallbackMethod: SimSmsFallbackMethod;
+        commandsCallbackMethod: string;
+        smsFallbackMethod: string;
         smsFallbackUrl: string;
-        smsMethod: SimSmsMethod;
+        smsMethod: string;
         smsUrl: string;
-        voiceFallbackMethod: SimVoiceFallbackMethod;
+        voiceFallbackMethod: string;
         voiceFallbackUrl: string;
-        voiceMethod: SimVoiceMethod;
+        voiceMethod: string;
         voiceUrl: string;
         dateCreated: Date;
         dateUpdated: Date;

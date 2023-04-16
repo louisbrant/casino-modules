@@ -3,10 +3,10 @@ import { inspect, InspectOptions } from "util";
 import Page, { TwilioResponsePayload } from "../../../../base/Page";
 import Response from "../../../../http/response";
 import V1 from "../../V1";
-export type VideoParticipantSummaryCodec = "VP8" | "H264" | "VP9";
-export type VideoParticipantSummaryEdgeLocation = "ashburn" | "dublin" | "frankfurt" | "singapore" | "sydney" | "sao_paulo" | "roaming" | "umatilla" | "tokyo";
-export type VideoParticipantSummaryRoomStatus = "in_progress" | "completed";
-export type VideoParticipantSummaryTwilioRealm = "us1" | "us2" | "au1" | "br1" | "ie1" | "jp1" | "sg1" | "in1" | "de1" | "gll";
+export type ParticipantCodec = "VP8" | "H264" | "VP9";
+export type ParticipantEdgeLocation = "ashburn" | "dublin" | "frankfurt" | "singapore" | "sydney" | "sao_paulo" | "roaming" | "umatilla" | "tokyo";
+export type ParticipantRoomStatus = "in_progress" | "completed";
+export type ParticipantTwilioRealm = "us1" | "us2" | "au1" | "br1" | "ie1" | "jp1" | "sg1" | "in1" | "de1" | "gll";
 /**
  * Options to pass to each
  */
@@ -84,14 +84,14 @@ interface ParticipantResource {
     duration_sec: number;
     account_sid: string;
     room_sid: string;
-    status: VideoParticipantSummaryRoomStatus;
-    codecs: Array<VideoParticipantSummaryCodec>;
+    status: ParticipantRoomStatus;
+    codecs: Array<ParticipantCodec>;
     end_reason: string;
     error_code: number;
     error_code_url: string;
-    media_region: VideoParticipantSummaryTwilioRealm;
+    media_region: ParticipantTwilioRealm;
     properties: any;
-    edge_location: VideoParticipantSummaryEdgeLocation;
+    edge_location: ParticipantEdgeLocation;
     publisher_info: any;
     url: string;
 }
@@ -128,11 +128,11 @@ export declare class ParticipantInstance {
      * Unique identifier for the room.
      */
     roomSid: string;
-    status: VideoParticipantSummaryRoomStatus;
+    status: ParticipantRoomStatus;
     /**
      * Codecs detected from the participant. Can be `VP8`, `H264`, or `VP9`.
      */
-    codecs: Array<VideoParticipantSummaryCodec>;
+    codecs: Array<ParticipantCodec>;
     /**
      * Reason the participant left the room. See [the list of possible values here](https://www.twilio.com/docs/video/video-log-analyzer/video-log-analyzer-api#end_reason).
      */
@@ -145,12 +145,12 @@ export declare class ParticipantInstance {
      * Twilio error code dictionary link.
      */
     errorCodeUrl: string;
-    mediaRegion: VideoParticipantSummaryTwilioRealm;
+    mediaRegion: ParticipantTwilioRealm;
     /**
      * Object containing information about the participant\'s data from the room. See [below](https://www.twilio.com/docs/video/video-log-analyzer/video-log-analyzer-api#properties) for more information.
      */
     properties: any;
-    edgeLocation: VideoParticipantSummaryEdgeLocation;
+    edgeLocation: ParticipantEdgeLocation;
     /**
      * Object containing information about the SDK name and version. See [below](https://www.twilio.com/docs/video/video-log-analyzer/video-log-analyzer-api#publisher_info) for more information.
      */
@@ -181,14 +181,14 @@ export declare class ParticipantInstance {
         durationSec: number;
         accountSid: string;
         roomSid: string;
-        status: VideoParticipantSummaryRoomStatus;
-        codecs: VideoParticipantSummaryCodec[];
+        status: ParticipantRoomStatus;
+        codecs: ParticipantCodec[];
         endReason: string;
         errorCode: number;
         errorCodeUrl: string;
-        mediaRegion: VideoParticipantSummaryTwilioRealm;
+        mediaRegion: ParticipantTwilioRealm;
         properties: any;
-        edgeLocation: VideoParticipantSummaryEdgeLocation;
+        edgeLocation: ParticipantEdgeLocation;
         publisherInfo: any;
         url: string;
     };

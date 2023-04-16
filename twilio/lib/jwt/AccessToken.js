@@ -2,181 +2,7 @@
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.ChatGrant = exports.Grant = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-class Grant {
-    constructor(opts) { }
-}
-exports.Grant = Grant;
-class TaskRouterGrant extends Grant {
-    /**
-     * @param options - ...
-     * @param options.workspaceSid - The workspace unique ID
-     * @param options.workerSid - The worker unique ID
-     * @param options.role - The role of the grant
-     */
-    constructor(options) {
-        options = options || {};
-        super(options);
-        this.workspaceSid = options.workspaceSid;
-        this.workerSid = options.workerSid;
-        this.role = options.role;
-        this.key = "task_router";
-    }
-    toPayload() {
-        var grant = {};
-        if (this.workspaceSid) {
-            grant.workspace_sid = this.workspaceSid;
-        }
-        if (this.workerSid) {
-            grant.worker_sid = this.workerSid;
-        }
-        if (this.role) {
-            grant.role = this.role;
-        }
-        return grant;
-    }
-}
-class ChatGrant extends Grant {
-    /**
-     * @param options - ...
-     * @param options.serviceSid - The service unique ID
-     * @param options.endpointId - The endpoint ID
-     * @param options.deploymentRoleSid - SID of the deployment role to be
-     *                 assigned to the user
-     * @param options.pushCredentialSid - The Push Credentials SID
-     */
-    constructor(options) {
-        options = options || {};
-        super(options);
-        this.serviceSid = options.serviceSid;
-        this.endpointId = options.endpointId;
-        this.deploymentRoleSid = options.deploymentRoleSid;
-        this.pushCredentialSid = options.pushCredentialSid;
-        this.key = "chat";
-    }
-    toPayload() {
-        var grant = {};
-        if (this.serviceSid) {
-            grant.service_sid = this.serviceSid;
-        }
-        if (this.endpointId) {
-            grant.endpoint_id = this.endpointId;
-        }
-        if (this.deploymentRoleSid) {
-            grant.deployment_role_sid = this.deploymentRoleSid;
-        }
-        if (this.pushCredentialSid) {
-            grant.push_credential_sid = this.pushCredentialSid;
-        }
-        return grant;
-    }
-}
-exports.ChatGrant = ChatGrant;
-class VideoGrant extends Grant {
-    /**
-     * @param options - ...
-     * @param options.room - The Room name or Room sid.
-     */
-    constructor(options) {
-        options = options || {};
-        super(options);
-        this.room = options.room;
-        this.key = "video";
-    }
-    toPayload() {
-        var grant = {};
-        if (this.room) {
-            grant.room = this.room;
-        }
-        return grant;
-    }
-}
-class SyncGrant extends Grant {
-    /**
-     * @param options.serviceSid - The service unique ID
-     * @param options.endpointId - The endpoint ID
-     */
-    constructor(options) {
-        options = options || {};
-        super(options);
-        this.serviceSid = options.serviceSid;
-        this.endpointId = options.endpointId;
-        this.key = "data_sync";
-    }
-    toPayload() {
-        var grant = {};
-        if (this.serviceSid) {
-            grant.service_sid = this.serviceSid;
-        }
-        if (this.endpointId) {
-            grant.endpoint_id = this.endpointId;
-        }
-        return grant;
-    }
-}
-class VoiceGrant extends Grant {
-    /**
-     * @param options - ...
-     * @param options.incomingAllow - Whether or not this endpoint is allowed to receive incoming calls as grants.identity
-     * @param options.outgoingApplicationSid - application sid to call when placing outgoing call
-     * @param options.outgoingApplicationParams - request params to pass to the application
-     * @param options.pushCredentialSid - Push Credential Sid to use when registering to receive incoming call notifications
-     * @param options.endpointId - Specify an endpoint identifier for this device, which will allow the developer
-     *                 to direct calls to a specific endpoint when multiple devices are associated with a single identity
-     */
-    constructor(options) {
-        options = options || {};
-        super(options);
-        this.incomingAllow = options.incomingAllow;
-        this.outgoingApplicationSid = options.outgoingApplicationSid;
-        this.outgoingApplicationParams = options.outgoingApplicationParams;
-        this.pushCredentialSid = options.pushCredentialSid;
-        this.endpointId = options.endpointId;
-        this.key = "voice";
-    }
-    toPayload() {
-        var grant = {};
-        if (this.incomingAllow === true) {
-            grant.incoming = { allow: true };
-        }
-        if (this.outgoingApplicationSid) {
-            grant.outgoing = {
-                application_sid: this.outgoingApplicationSid,
-            };
-            if (this.outgoingApplicationParams) {
-                grant.outgoing.params = this.outgoingApplicationParams;
-            }
-        }
-        if (this.pushCredentialSid) {
-            grant.push_credential_sid = this.pushCredentialSid;
-        }
-        if (this.endpointId) {
-            grant.endpoint_id = this.endpointId;
-        }
-        return grant;
-    }
-}
-class PlaybackGrant extends Grant {
-    /**
-     * @param options - ...
-     * @param options.grant - The PlaybackGrant retrieved from Twilio's API
-     */
-    constructor(options) {
-        options = options || {};
-        super(options);
-        this.grant = options.grant;
-        this.key = "player";
-    }
-    toPayload() {
-        var grant = {};
-        if (this.grant) {
-            grant = this.grant;
-        }
-        return grant;
-    }
-}
 class AccessToken {
     /**
      * @param accountSid - The account's unique ID to which access is scoped
@@ -219,22 +45,22 @@ class AccessToken {
             throw new Error("Algorithm not supported. Allowed values are " +
                 AccessToken.ALGORITHMS.join(", "));
         }
-        var grants = {};
+        let grants = {};
         if (Number.isInteger(this.identity) || typeof this.identity === "string") {
             grants.identity = String(this.identity);
         }
         for (const grant of this.grants) {
             grants[grant.key] = grant.toPayload();
         }
-        var now = Math.floor(Date.now() / 1000);
-        var payload = {
+        const now = Math.floor(Date.now() / 1000);
+        let payload = {
             jti: this.keySid + "-" + now,
             grants: grants,
         };
         if (typeof this.nbf === "number") {
             payload.nbf = this.nbf;
         }
-        var header = {
+        let header = {
             cty: "twilio-fpa;v=1",
             typ: "JWT",
         };
@@ -250,12 +76,181 @@ class AccessToken {
         });
     }
 }
-exports.default = AccessToken;
 AccessToken.DEFAULT_ALGORITHM = "HS256";
 AccessToken.ALGORITHMS = ["HS256", "HS384", "HS512"];
-AccessToken.ChatGrant = ChatGrant;
-AccessToken.VoiceGrant = VoiceGrant;
-AccessToken.SyncGrant = SyncGrant;
-AccessToken.VideoGrant = VideoGrant;
-AccessToken.TaskRouterGrant = TaskRouterGrant;
-AccessToken.PlaybackGrant = PlaybackGrant;
+(function (AccessToken) {
+    class Grant {
+        constructor(key) {
+            this.key = key;
+        }
+    }
+    AccessToken.Grant = Grant;
+    class TaskRouterGrant extends Grant {
+        /**
+         * @param options - ...
+         * @param options.workspaceSid - The workspace unique ID
+         * @param options.workerSid - The worker unique ID
+         * @param options.role - The role of the grant
+         */
+        constructor(options) {
+            options = options || {};
+            super("task_router");
+            this.workspaceSid = options.workspaceSid;
+            this.workerSid = options.workerSid;
+            this.role = options.role;
+        }
+        toPayload() {
+            let grant = {};
+            if (this.workspaceSid) {
+                grant.workspace_sid = this.workspaceSid;
+            }
+            if (this.workerSid) {
+                grant.worker_sid = this.workerSid;
+            }
+            if (this.role) {
+                grant.role = this.role;
+            }
+            return grant;
+        }
+    }
+    AccessToken.TaskRouterGrant = TaskRouterGrant;
+    class ChatGrant extends Grant {
+        /**
+         * @param options - ...
+         * @param options.serviceSid - The service unique ID
+         * @param options.endpointId - The endpoint ID
+         * @param options.deploymentRoleSid - SID of the deployment role to be
+         *                 assigned to the user
+         * @param options.pushCredentialSid - The Push Credentials SID
+         */
+        constructor(options) {
+            options = options || {};
+            super("chat");
+            this.serviceSid = options.serviceSid;
+            this.endpointId = options.endpointId;
+            this.deploymentRoleSid = options.deploymentRoleSid;
+            this.pushCredentialSid = options.pushCredentialSid;
+        }
+        toPayload() {
+            let grant = {};
+            if (this.serviceSid) {
+                grant.service_sid = this.serviceSid;
+            }
+            if (this.endpointId) {
+                grant.endpoint_id = this.endpointId;
+            }
+            if (this.deploymentRoleSid) {
+                grant.deployment_role_sid = this.deploymentRoleSid;
+            }
+            if (this.pushCredentialSid) {
+                grant.push_credential_sid = this.pushCredentialSid;
+            }
+            return grant;
+        }
+    }
+    AccessToken.ChatGrant = ChatGrant;
+    class VideoGrant extends Grant {
+        /**
+         * @param options - ...
+         * @param options.room - The Room name or Room sid.
+         */
+        constructor(options) {
+            options = options || {};
+            super("video");
+            this.room = options.room;
+        }
+        toPayload() {
+            let grant = {};
+            if (this.room) {
+                grant.room = this.room;
+            }
+            return grant;
+        }
+    }
+    AccessToken.VideoGrant = VideoGrant;
+    class SyncGrant extends Grant {
+        /**
+         * @param options.serviceSid - The service unique ID
+         * @param options.endpointId - The endpoint ID
+         */
+        constructor(options) {
+            options = options || {};
+            super("data_sync");
+            this.serviceSid = options.serviceSid;
+            this.endpointId = options.endpointId;
+        }
+        toPayload() {
+            let grant = {};
+            if (this.serviceSid) {
+                grant.service_sid = this.serviceSid;
+            }
+            if (this.endpointId) {
+                grant.endpoint_id = this.endpointId;
+            }
+            return grant;
+        }
+    }
+    AccessToken.SyncGrant = SyncGrant;
+    class VoiceGrant extends Grant {
+        /**
+         * @param options - ...
+         * @param options.incomingAllow - Whether or not this endpoint is allowed to receive incoming calls as grants.identity
+         * @param options.outgoingApplicationSid - application sid to call when placing outgoing call
+         * @param options.outgoingApplicationParams - request params to pass to the application
+         * @param options.pushCredentialSid - Push Credential Sid to use when registering to receive incoming call notifications
+         * @param options.endpointId - Specify an endpoint identifier for this device, which will allow the developer
+         *                 to direct calls to a specific endpoint when multiple devices are associated with a single identity
+         */
+        constructor(options) {
+            options = options || {};
+            super("voice");
+            this.incomingAllow = options.incomingAllow;
+            this.outgoingApplicationSid = options.outgoingApplicationSid;
+            this.outgoingApplicationParams = options.outgoingApplicationParams;
+            this.pushCredentialSid = options.pushCredentialSid;
+            this.endpointId = options.endpointId;
+        }
+        toPayload() {
+            let grant = {};
+            if (this.incomingAllow === true) {
+                grant.incoming = { allow: true };
+            }
+            if (this.outgoingApplicationSid) {
+                grant.outgoing = {
+                    application_sid: this.outgoingApplicationSid,
+                };
+                if (this.outgoingApplicationParams) {
+                    grant.outgoing.params = this.outgoingApplicationParams;
+                }
+            }
+            if (this.pushCredentialSid) {
+                grant.push_credential_sid = this.pushCredentialSid;
+            }
+            if (this.endpointId) {
+                grant.endpoint_id = this.endpointId;
+            }
+            return grant;
+        }
+    }
+    AccessToken.VoiceGrant = VoiceGrant;
+    class PlaybackGrant extends Grant {
+        /**
+         * @param options - ...
+         * @param options.grant - The PlaybackGrant retrieved from Twilio's API
+         */
+        constructor(options) {
+            options = options || {};
+            super("player");
+            this.grant = options.grant;
+        }
+        toPayload() {
+            let grant = {};
+            if (this.grant) {
+                grant = this.grant;
+            }
+            return grant;
+        }
+    }
+    AccessToken.PlaybackGrant = PlaybackGrant;
+})(AccessToken || (AccessToken = {}));
+module.exports = AccessToken;

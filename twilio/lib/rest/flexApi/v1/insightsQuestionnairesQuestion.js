@@ -167,9 +167,6 @@ function InsightsQuestionnairesQuestionListInstance(version) {
         if (params["question"] === null || params["question"] === undefined) {
             throw new Error("Required parameter \"params['question']\" missing.");
         }
-        if (params["description"] === null || params["description"] === undefined) {
-            throw new Error("Required parameter \"params['description']\" missing.");
-        }
         if (params["answerSetId"] === null || params["answerSetId"] === undefined) {
             throw new Error("Required parameter \"params['answerSetId']\" missing.");
         }
@@ -179,9 +176,10 @@ function InsightsQuestionnairesQuestionListInstance(version) {
         let data = {};
         data["CategoryId"] = params["categoryId"];
         data["Question"] = params["question"];
-        data["Description"] = params["description"];
         data["AnswerSetId"] = params["answerSetId"];
         data["AllowNa"] = serialize.bool(params["allowNa"]);
+        if (params["description"] !== undefined)
+            data["Description"] = params["description"];
         const headers = {};
         headers["Content-Type"] = "application/x-www-form-urlencoded";
         if (params["token"] !== undefined)

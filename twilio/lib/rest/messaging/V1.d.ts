@@ -4,7 +4,9 @@ import { BrandRegistrationListInstance } from "./v1/brandRegistration";
 import { DeactivationsListInstance } from "./v1/deactivations";
 import { DomainCertsListInstance } from "./v1/domainCerts";
 import { DomainConfigListInstance } from "./v1/domainConfig";
+import { DomainConfigMessagingServiceListInstance } from "./v1/domainConfigMessagingService";
 import { ExternalCampaignListInstance } from "./v1/externalCampaign";
+import { LinkshorteningMessagingServiceListInstance } from "./v1/linkshorteningMessagingService";
 import { ServiceListInstance } from "./v1/service";
 import { TollfreeVerificationListInstance } from "./v1/tollfreeVerification";
 import { UsecaseListInstance } from "./v1/usecase";
@@ -23,8 +25,12 @@ export default class V1 extends Version {
     protected _domainCerts?: DomainCertsListInstance;
     /** domainConfig - { Twilio.Messaging.V1.DomainConfigListInstance } resource */
     protected _domainConfig?: DomainConfigListInstance;
+    /** domainConfigMessagingService - { Twilio.Messaging.V1.DomainConfigMessagingServiceListInstance } resource */
+    protected _domainConfigMessagingService?: DomainConfigMessagingServiceListInstance;
     /** externalCampaign - { Twilio.Messaging.V1.ExternalCampaignListInstance } resource */
     protected _externalCampaign?: ExternalCampaignListInstance;
+    /** linkshorteningMessagingService - { Twilio.Messaging.V1.LinkshorteningMessagingServiceListInstance } resource */
+    protected _linkshorteningMessagingService?: LinkshorteningMessagingServiceListInstance;
     /** services - { Twilio.Messaging.V1.ServiceListInstance } resource */
     protected _services?: ServiceListInstance;
     /** tollfreeVerifications - { Twilio.Messaging.V1.TollfreeVerificationListInstance } resource */
@@ -39,8 +45,12 @@ export default class V1 extends Version {
     get domainCerts(): DomainCertsListInstance;
     /** Getter for domainConfig resource */
     get domainConfig(): DomainConfigListInstance;
+    /** Getter for domainConfigMessagingService resource */
+    get domainConfigMessagingService(): DomainConfigMessagingServiceListInstance;
     /** Getter for externalCampaign resource */
     get externalCampaign(): ExternalCampaignListInstance;
+    /** Getter for linkshorteningMessagingService resource */
+    get linkshorteningMessagingService(): LinkshorteningMessagingServiceListInstance;
     /** Getter for services resource */
     get services(): ServiceListInstance;
     /** Getter for tollfreeVerifications resource */

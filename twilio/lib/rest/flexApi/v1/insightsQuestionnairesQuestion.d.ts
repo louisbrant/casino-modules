@@ -35,14 +35,14 @@ export interface InsightsQuestionnairesQuestionListInstanceCreateOptions {
     categoryId: string;
     /** The question. */
     question: string;
-    /** The description for the question. */
-    description: string;
     /** The answer_set for the question. */
     answerSetId: string;
     /** The flag to enable for disable NA for answer. */
     allowNa: boolean;
     /** The Token HTTP request header */
     token?: string;
+    /** The description for the question. */
+    description?: string;
 }
 /**
  * Options to pass to each

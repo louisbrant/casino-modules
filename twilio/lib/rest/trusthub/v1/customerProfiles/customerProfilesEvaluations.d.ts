@@ -3,7 +3,7 @@ import { inspect, InspectOptions } from "util";
 import Page, { TwilioResponsePayload } from "../../../../base/Page";
 import Response from "../../../../http/response";
 import V1 from "../../V1";
-export type CustomerProfileEvaluationStatus = "compliant" | "noncompliant";
+export type CustomerProfilesEvaluationsStatus = "compliant" | "noncompliant";
 /**
  * Options to pass to create a CustomerProfilesEvaluationsInstance
  */
@@ -85,7 +85,7 @@ interface CustomerProfilesEvaluationsResource {
     account_sid: string;
     policy_sid: string;
     customer_profile_sid: string;
-    status: CustomerProfileEvaluationStatus;
+    status: CustomerProfilesEvaluationsStatus;
     results: Array<any>;
     date_created: Date;
     url: string;
@@ -111,7 +111,7 @@ export declare class CustomerProfilesEvaluationsInstance {
      * The unique string that we created to identify the customer_profile resource.
      */
     customerProfileSid: string;
-    status: CustomerProfileEvaluationStatus;
+    status: CustomerProfilesEvaluationsStatus;
     /**
      * The results of the Evaluation which includes the valid and invalid attributes.
      */
@@ -137,7 +137,7 @@ export declare class CustomerProfilesEvaluationsInstance {
         accountSid: string;
         policySid: string;
         customerProfileSid: string;
-        status: CustomerProfileEvaluationStatus;
+        status: CustomerProfilesEvaluationsStatus;
         results: any[];
         dateCreated: Date;
         url: string;

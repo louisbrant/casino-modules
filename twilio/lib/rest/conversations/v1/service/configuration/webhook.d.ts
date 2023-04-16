@@ -1,7 +1,7 @@
 /// <reference types="node" />
 import { inspect, InspectOptions } from "util";
 import V1 from "../../../V1";
-export type ServiceWebhookConfigurationMethod = "GET" | "POST";
+export type WebhookMethod = "GET" | "POST";
 /**
  * Options to pass to update a WebhookInstance
  */
@@ -71,7 +71,7 @@ interface WebhookResource {
     pre_webhook_url: string;
     post_webhook_url: string;
     filters: Array<string>;
-    method: ServiceWebhookConfigurationMethod;
+    method: WebhookMethod;
     url: string;
 }
 export declare class WebhookInstance {
@@ -99,7 +99,7 @@ export declare class WebhookInstance {
      * The list of events that your configured webhook targets will receive. Events not configured here will not fire. Possible values are `onParticipantAdd`, `onParticipantAdded`, `onDeliveryUpdated`, `onConversationUpdated`, `onConversationRemove`, `onParticipantRemove`, `onConversationUpdate`, `onMessageAdd`, `onMessageRemoved`, `onParticipantUpdated`, `onConversationAdded`, `onMessageAdded`, `onConversationAdd`, `onConversationRemoved`, `onParticipantUpdate`, `onMessageRemove`, `onMessageUpdated`, `onParticipantRemoved`, `onMessageUpdate` or `onConversationStateUpdated`.
      */
     filters: Array<string>;
-    method: ServiceWebhookConfigurationMethod;
+    method: WebhookMethod;
     /**
      * An absolute API resource URL for this webhook.
      */
@@ -141,7 +141,7 @@ export declare class WebhookInstance {
         preWebhookUrl: string;
         postWebhookUrl: string;
         filters: string[];
-        method: ServiceWebhookConfigurationMethod;
+        method: WebhookMethod;
         url: string;
     };
     [inspect.custom](_depth: any, options: InspectOptions): string;

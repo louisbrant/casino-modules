@@ -3,7 +3,7 @@ import { inspect, InspectOptions } from "util";
 import Page, { TwilioResponsePayload } from "../../../../../base/Page";
 import Response from "../../../../../http/response";
 import V1 from "../../../V1";
-export type RoomParticipantPublishedTrackKind = "audio" | "video" | "data";
+export type PublishedTrackKind = "audio" | "video" | "data";
 /**
  * Options to pass to each
  */
@@ -82,7 +82,7 @@ interface PublishedTrackResource {
     date_created: Date;
     date_updated: Date;
     enabled: boolean;
-    kind: RoomParticipantPublishedTrackKind;
+    kind: PublishedTrackKind;
     url: string;
 }
 export declare class PublishedTrackInstance {
@@ -118,7 +118,7 @@ export declare class PublishedTrackInstance {
      * Whether the track is enabled.
      */
     enabled: boolean;
-    kind: RoomParticipantPublishedTrackKind;
+    kind: PublishedTrackKind;
     /**
      * The absolute URL of the resource.
      */
@@ -145,7 +145,7 @@ export declare class PublishedTrackInstance {
         dateCreated: Date;
         dateUpdated: Date;
         enabled: boolean;
-        kind: RoomParticipantPublishedTrackKind;
+        kind: PublishedTrackKind;
         url: string;
     };
     [inspect.custom](_depth: any, options: InspectOptions): string;

@@ -86,7 +86,6 @@ interface PhoneNumberResource {
     line_type_intelligence: any;
     identity_match: any;
     sms_pumping_risk: any;
-    disposable_phone_number_risk: any;
     url: string;
 }
 export declare class PhoneNumberInstance {
@@ -147,10 +146,6 @@ export declare class PhoneNumberInstance {
      */
     smsPumpingRisk: any;
     /**
-     * An object that contains information on if a mobile phone number could be a disposable or burner number.
-     */
-    disposablePhoneNumberRisk: any;
-    /**
      * The absolute URL of the resource.
      */
     url: string;
@@ -191,7 +186,6 @@ export declare class PhoneNumberInstance {
         lineTypeIntelligence: any;
         identityMatch: any;
         smsPumpingRisk: any;
-        disposablePhoneNumberRisk: any;
         url: string;
     };
     [inspect.custom](_depth: any, options: InspectOptions): string;

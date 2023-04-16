@@ -1,11 +1,11 @@
 /// <reference types="node" />
 import { inspect, InspectOptions } from "util";
 import V2010 from "../../../V2010";
-export type PaymentsBankAccountType = "consumer-checking" | "consumer-savings" | "commercial-checking";
-export type PaymentsCapture = "payment-card-number" | "expiration-date" | "security-code" | "postal-code" | "bank-routing-number" | "bank-account-number";
-export type PaymentsPaymentMethod = "credit-card" | "ach-debit";
-export type PaymentsStatus = "complete" | "cancel";
-export type PaymentsTokenType = "one-time" | "reusable";
+export type PaymentBankAccountType = "consumer-checking" | "consumer-savings" | "commercial-checking";
+export type PaymentCapture = "payment-card-number" | "expiration-date" | "security-code" | "postal-code" | "bank-routing-number" | "bank-account-number";
+export type PaymentPaymentMethod = "credit-card" | "ach-debit";
+export type PaymentStatus = "complete" | "cancel";
+export type PaymentTokenType = "one-time" | "reusable";
 /**
  * Options to pass to update a PaymentInstance
  */
@@ -15,9 +15,9 @@ export interface PaymentContextUpdateOptions {
     /** Provide an absolute or relative URL to receive status updates regarding your Pay session. Read more about the [Update](https://www.twilio.com/docs/voice/api/payment-resource#statuscallback-update) and [Complete/Cancel](https://www.twilio.com/docs/voice/api/payment-resource#statuscallback-cancelcomplete) POST requests. */
     statusCallback: string;
     /**  */
-    capture?: PaymentsCapture;
+    capture?: PaymentCapture;
     /**  */
-    status?: PaymentsStatus;
+    status?: PaymentStatus;
 }
 /**
  * Options to pass to create a PaymentInstance
@@ -28,7 +28,7 @@ export interface PaymentListInstanceCreateOptions {
     /** Provide an absolute or relative URL to receive status updates regarding your Pay session. Read more about the [expected StatusCallback values](https://www.twilio.com/docs/voice/api/payment-resource#statuscallback) */
     statusCallback: string;
     /**  */
-    bankAccountType?: PaymentsBankAccountType;
+    bankAccountType?: PaymentBankAccountType;
     /** A positive decimal value less than 1,000,000 to charge against the credit card or bank account. Default currency can be overwritten with `currency` field. Leave blank or set to 0 to tokenize. */
     chargeAmount?: number;
     /** The currency of the `charge_amount`, formatted as [ISO 4127](http://www.iso.org/iso/home/standards/currency_codes.htm) format. The default value is `USD` and all values allowed from the Pay Connector are accepted. */
@@ -44,7 +44,7 @@ export interface PaymentListInstanceCreateOptions {
     /** This is the unique name corresponding to the Pay Connector installed in the Twilio Add-ons. Learn more about [<Pay> Connectors](https://www.twilio.com/console/voice/pay-connectors). The default value is `Default`. */
     paymentConnector?: string;
     /**  */
-    paymentMethod?: PaymentsPaymentMethod;
+    paymentMethod?: PaymentPaymentMethod;
     /** Indicates whether the credit card postal code (zip code) is a required piece of payment information that must be provided by the caller. The default is `true`. */
     postalCode?: boolean;
     /** Indicates whether the credit card security code is a required piece of payment information that must be provided by the caller. The default is `true`. */
@@ -52,7 +52,7 @@ export interface PaymentListInstanceCreateOptions {
     /** The number of seconds that <Pay> should wait for the caller to press a digit between each subsequent digit, after the first one, before moving on to validate the digits captured. The default is `5`, maximum is `600`. */
     timeout?: number;
     /**  */
-    tokenType?: PaymentsTokenType;
+    tokenType?: PaymentTokenType;
     /** Credit card types separated by space that Pay should accept. The default value is `visa mastercard amex` */
     validCardTypes?: string;
 }

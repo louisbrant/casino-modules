@@ -67,7 +67,7 @@ interface DomainCertsResource {
     domain_name: string;
     certificate_sid: string;
     url: string;
-    validated: boolean;
+    cert_in_validation: any;
 }
 export declare class DomainCertsInstance {
     protected _version: V1;
@@ -100,9 +100,9 @@ export declare class DomainCertsInstance {
     certificateSid: string;
     url: string;
     /**
-     * Boolean value indicating whether certificate has been validated
+     * Optional JSON field describing the status and upload date of a new certificate in the process of validation
      */
-    validated: boolean;
+    certInValidation: any;
     private get _proxy();
     /**
      * Remove a DomainCertsInstance
@@ -142,7 +142,7 @@ export declare class DomainCertsInstance {
         domainName: string;
         certificateSid: string;
         url: string;
-        validated: boolean;
+        certInValidation: any;
     };
     [inspect.custom](_depth: any, options: InspectOptions): string;
 }

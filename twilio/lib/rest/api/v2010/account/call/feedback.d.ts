@@ -1,7 +1,7 @@
 /// <reference types="node" />
 import { inspect, InspectOptions } from "util";
 import V2010 from "../../../V2010";
-export type CallFeedbackIssues = "audio-latency" | "digits-not-captured" | "dropped-call" | "imperfect-audio" | "incorrect-caller-id" | "one-way-audio" | "post-dial-delay" | "unsolicited-call";
+export type FeedbackIssues = "audio-latency" | "digits-not-captured" | "dropped-call" | "imperfect-audio" | "incorrect-caller-id" | "one-way-audio" | "post-dial-delay" | "unsolicited-call";
 /**
  * Options to pass to update a FeedbackInstance
  */
@@ -9,7 +9,7 @@ export interface FeedbackContextUpdateOptions {
     /** The call quality expressed as an integer from `1` to `5` where `1` represents very poor call quality and `5` represents a perfect call. */
     qualityScore?: number;
     /** One or more issues experienced during the call. The issues can be: `imperfect-audio`, `dropped-call`, `incorrect-caller-id`, `post-dial-delay`, `digits-not-captured`, `audio-latency`, `unsolicited-call`, or `one-way-audio`. */
-    issue?: Array<CallFeedbackIssues>;
+    issue?: Array<FeedbackIssues>;
 }
 export interface FeedbackContext {
     /**
@@ -66,7 +66,7 @@ interface FeedbackResource {
     account_sid: string;
     date_created: Date;
     date_updated: Date;
-    issues: Array<CallFeedbackIssues>;
+    issues: Array<FeedbackIssues>;
     quality_score: number;
     sid: string;
 }
@@ -90,7 +90,7 @@ export declare class FeedbackInstance {
     /**
      * A list of issues experienced during the call. The issues can be: `imperfect-audio`, `dropped-call`, `incorrect-caller-id`, `post-dial-delay`, `digits-not-captured`, `audio-latency`, `unsolicited-call`, or `one-way-audio`.
      */
-    issues: Array<CallFeedbackIssues>;
+    issues: Array<FeedbackIssues>;
     /**
      * `1` to `5` quality score where `1` represents imperfect experience and `5` represents a perfect call.
      */
@@ -134,7 +134,7 @@ export declare class FeedbackInstance {
         accountSid: string;
         dateCreated: Date;
         dateUpdated: Date;
-        issues: CallFeedbackIssues[];
+        issues: FeedbackIssues[];
         qualityScore: number;
         sid: string;
     };

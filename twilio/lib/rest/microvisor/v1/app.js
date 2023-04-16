@@ -22,6 +22,7 @@ const Page_1 = __importDefault(require("../../../base/Page"));
 const deserialize = require("../../../base/deserialize");
 const serialize = require("../../../base/serialize");
 const utility_1 = require("../../../base/utility");
+const appManifest_1 = require("./app/appManifest");
 class AppContextImpl {
     constructor(_version, sid) {
         this._version = _version;
@@ -30,6 +31,12 @@ class AppContextImpl {
         }
         this._solution = { sid };
         this._uri = `/Apps/${sid}`;
+    }
+    get appManifests() {
+        this._appManifests =
+            this._appManifests ||
+                (0, appManifest_1.AppManifestListInstance)(this._version, this._solution.sid);
+        return this._appManifests;
     }
     remove(callback) {
         const instance = this;
@@ -73,6 +80,7 @@ class AppInstance {
         this.dateCreated = deserialize.iso8601DateTime(payload.date_created);
         this.dateUpdated = deserialize.iso8601DateTime(payload.date_updated);
         this.url = payload.url;
+        this.links = payload.links;
         this._solution = { sid: sid || this.sid };
     }
     get _proxy() {
@@ -101,6 +109,12 @@ class AppInstance {
         return this._proxy.fetch(callback);
     }
     /**
+     * Access the appManifests.
+     */
+    appManifests() {
+        return this._proxy.appManifests;
+    }
+    /**
      * Provide a user-friendly representation
      *
      * @returns Object
@@ -114,6 +128,7 @@ class AppInstance {
             dateCreated: this.dateCreated,
             dateUpdated: this.dateUpdated,
             url: this.url,
+            links: this.links,
         };
     }
     [util_1.inspect.custom](_depth, options) {

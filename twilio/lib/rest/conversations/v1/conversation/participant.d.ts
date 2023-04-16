@@ -3,20 +3,20 @@ import { inspect, InspectOptions } from "util";
 import Page, { TwilioResponsePayload } from "../../../../base/Page";
 import Response from "../../../../http/response";
 import V1 from "../../V1";
-export type ConversationParticipantWebhookEnabledType = "true" | "false";
+export type ParticipantWebhookEnabledType = "true" | "false";
 /**
  * Options to pass to remove a ParticipantInstance
  */
 export interface ParticipantContextRemoveOptions {
     /** The X-Twilio-Webhook-Enabled HTTP request header */
-    xTwilioWebhookEnabled?: ConversationParticipantWebhookEnabledType;
+    xTwilioWebhookEnabled?: ParticipantWebhookEnabledType;
 }
 /**
  * Options to pass to update a ParticipantInstance
  */
 export interface ParticipantContextUpdateOptions {
     /** The X-Twilio-Webhook-Enabled HTTP request header */
-    xTwilioWebhookEnabled?: ConversationParticipantWebhookEnabledType;
+    xTwilioWebhookEnabled?: ParticipantWebhookEnabledType;
     /** The date that this resource was created. */
     dateCreated?: Date;
     /** The date that this resource was last updated. */
@@ -41,7 +41,7 @@ export interface ParticipantContextUpdateOptions {
  */
 export interface ParticipantListInstanceCreateOptions {
     /** The X-Twilio-Webhook-Enabled HTTP request header */
-    xTwilioWebhookEnabled?: ConversationParticipantWebhookEnabledType;
+    xTwilioWebhookEnabled?: ParticipantWebhookEnabledType;
     /** A unique string identifier for the conversation participant as [Conversation User](https://www.twilio.com/docs/conversations/api/user-resource). This parameter is non-null if (and only if) the participant is using the Conversations SDK to communicate. Limited to 256 characters. */
     identity?: string;
     /** The address of the participant\\\'s device, e.g. a phone or WhatsApp number. Together with the Proxy address, this determines a participant uniquely. This field (with proxy_address) is only null when the participant is interacting from an SDK endpoint (see the \\\'identity\\\' field). */

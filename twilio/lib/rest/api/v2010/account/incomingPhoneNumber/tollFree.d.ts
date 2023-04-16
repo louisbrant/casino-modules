@@ -4,10 +4,10 @@ import Page, { TwilioResponsePayload } from "../../../../../base/Page";
 import Response from "../../../../../http/response";
 import V2010 from "../../../V2010";
 import { PhoneNumberCapabilities } from "../../../../../interfaces";
-export type IncomingPhoneNumberTollFreeAddressRequirement = "none" | "any" | "local" | "foreign";
-export type IncomingPhoneNumberTollFreeEmergencyAddressStatus = "registered" | "unregistered" | "pending-registration" | "registration-failure" | "pending-unregistration" | "unregistration-failure";
-export type IncomingPhoneNumberTollFreeEmergencyStatus = "Active" | "Inactive";
-export type IncomingPhoneNumberTollFreeVoiceReceiveMode = "voice" | "fax";
+export type TollFreeAddressRequirement = "none" | "any" | "local" | "foreign";
+export type TollFreeEmergencyAddressStatus = "registered" | "unregistered" | "pending-registration" | "registration-failure" | "pending-unregistration" | "unregistration-failure";
+export type TollFreeEmergencyStatus = "Active" | "Inactive";
+export type TollFreeVoiceReceiveMode = "voice" | "fax";
 /**
  * Options to pass to create a TollFreeInstance
  */
@@ -49,13 +49,13 @@ export interface TollFreeListInstanceCreateOptions {
     /** The SID of the Address resource we should associate with the new phone number. Some regions require addresses to meet local regulations. */
     addressSid?: string;
     /**  */
-    emergencyStatus?: IncomingPhoneNumberTollFreeEmergencyStatus;
+    emergencyStatus?: TollFreeEmergencyStatus;
     /** The SID of the emergency address configuration to use for emergency calling from the new phone number. */
     emergencyAddressSid?: string;
     /** The SID of the Trunk we should use to handle calls to the new phone number. If a `trunk_sid` is present, we ignore all of the voice urls and voice applications and use only those set on the Trunk. Setting a `trunk_sid` will automatically delete your `voice_application_sid` and vice versa. */
     trunkSid?: string;
     /**  */
-    voiceReceiveMode?: IncomingPhoneNumberTollFreeVoiceReceiveMode;
+    voiceReceiveMode?: TollFreeVoiceReceiveMode;
     /** The SID of the Bundle resource that you associate with the phone number. Some regions require a Bundle to meet local Regulations. */
     bundleSid?: string;
 }
@@ -189,18 +189,13 @@ export interface TollFreeListInstance {
     [inspect.custom](_depth: any, options: InspectOptions): any;
 }
 export declare function TollFreeListInstance(version: V2010, accountSid: string): TollFreeListInstance;
-export type TollFreeSmsFallbackMethod = "HEAD" | "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
-export type TollFreeSmsMethod = "HEAD" | "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
-export type TollFreeStatusCallbackMethod = "HEAD" | "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
-export type TollFreeVoiceFallbackMethod = "HEAD" | "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
-export type TollFreeVoiceMethod = "HEAD" | "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
 interface TollFreePayload extends TwilioResponsePayload {
     incoming_phone_numbers: TollFreeResource[];
 }
 interface TollFreeResource {
     account_sid: string;
     address_sid: string;
-    address_requirements: IncomingPhoneNumberTollFreeAddressRequirement;
+    address_requirements: TollFreeAddressRequirement;
     api_version: string;
     beta: boolean;
     capabilities: PhoneNumberCapabilities;
@@ -212,24 +207,24 @@ interface TollFreeResource {
     origin: string;
     sid: string;
     sms_application_sid: string;
-    sms_fallback_method: TollFreeSmsFallbackMethod;
+    sms_fallback_method: string;
     sms_fallback_url: string;
-    sms_method: TollFreeSmsMethod;
+    sms_method: string;
     sms_url: string;
     status_callback: string;
-    status_callback_method: TollFreeStatusCallbackMethod;
+    status_callback_method: string;
     trunk_sid: string;
     uri: string;
-    voice_receive_mode: IncomingPhoneNumberTollFreeVoiceReceiveMode;
+    voice_receive_mode: TollFreeVoiceReceiveMode;
     voice_application_sid: string;
     voice_caller_id_lookup: boolean;
-    voice_fallback_method: TollFreeVoiceFallbackMethod;
+    voice_fallback_method: string;
     voice_fallback_url: string;
-    voice_method: TollFreeVoiceMethod;
+    voice_method: string;
     voice_url: string;
-    emergency_status: IncomingPhoneNumberTollFreeEmergencyStatus;
+    emergency_status: TollFreeEmergencyStatus;
     emergency_address_sid: string;
-    emergency_address_status: IncomingPhoneNumberTollFreeEmergencyAddressStatus;
+    emergency_address_status: TollFreeEmergencyAddressStatus;
     bundle_sid: string;
     status: string;
 }
@@ -244,7 +239,7 @@ export declare class TollFreeInstance {
      * The SID of the Address resource associated with the phone number.
      */
     addressSid: string;
-    addressRequirements: IncomingPhoneNumberTollFreeAddressRequirement;
+    addressRequirements: TollFreeAddressRequirement;
     /**
      * The API version used to start a new TwiML session.
      */
@@ -289,7 +284,7 @@ export declare class TollFreeInstance {
     /**
      * The HTTP method we use to call `sms_fallback_url`. Can be: `GET` or `POST`.
      */
-    smsFallbackMethod: TollFreeSmsFallbackMethod;
+    smsFallbackMethod: string;
     /**
      * The URL that we call when an error occurs while retrieving or executing the TwiML from `sms_url`.
      */
@@ -297,7 +292,7 @@ export declare class TollFreeInstance {
     /**
      * The HTTP method we use to call `sms_url`. Can be: `GET` or `POST`.
      */
-    smsMethod: TollFreeSmsMethod;
+    smsMethod: string;
     /**
      * The URL we call when the phone number receives an incoming SMS message.
      */
@@ -309,7 +304,7 @@ export declare class TollFreeInstance {
     /**
      * The HTTP method we use to call `status_callback`. Can be: `GET` or `POST`.
      */
-    statusCallbackMethod: TollFreeStatusCallbackMethod;
+    statusCallbackMethod: string;
     /**
      * The SID of the Trunk that handles calls to the phone number. If a `trunk_sid` is present, we ignore all of the voice urls and voice applications and use those set on the Trunk. Setting a `trunk_sid` will automatically delete your `voice_application_sid` and vice versa.
      */
@@ -318,7 +313,7 @@ export declare class TollFreeInstance {
      * The URI of the resource, relative to `https://api.twilio.com`.
      */
     uri: string;
-    voiceReceiveMode: IncomingPhoneNumberTollFreeVoiceReceiveMode;
+    voiceReceiveMode: TollFreeVoiceReceiveMode;
     /**
      * The SID of the application that handles calls to the phone number. If a `voice_application_sid` is present, we ignore all of the voice urls and use those set on the application. Setting a `voice_application_sid` will automatically delete your `trunk_sid` and vice versa.
      */
@@ -330,7 +325,7 @@ export declare class TollFreeInstance {
     /**
      * The HTTP method we use to call `voice_fallback_url`. Can be: `GET` or `POST`.
      */
-    voiceFallbackMethod: TollFreeVoiceFallbackMethod;
+    voiceFallbackMethod: string;
     /**
      * The URL that we call when an error occurs retrieving or executing the TwiML requested by `url`.
      */
@@ -338,17 +333,17 @@ export declare class TollFreeInstance {
     /**
      * The HTTP method we use to call `voice_url`. Can be: `GET` or `POST`.
      */
-    voiceMethod: TollFreeVoiceMethod;
+    voiceMethod: string;
     /**
      * The URL we call when the phone number receives a call. The `voice_url` will not be used if a `voice_application_sid` or a `trunk_sid` is set.
      */
     voiceUrl: string;
-    emergencyStatus: IncomingPhoneNumberTollFreeEmergencyStatus;
+    emergencyStatus: TollFreeEmergencyStatus;
     /**
      * The SID of the emergency address configuration that we use for emergency calling from this phone number.
      */
     emergencyAddressSid: string;
-    emergencyAddressStatus: IncomingPhoneNumberTollFreeEmergencyAddressStatus;
+    emergencyAddressStatus: TollFreeEmergencyAddressStatus;
     /**
      * The SID of the Bundle resource that you associate with the phone number. Some regions require a Bundle to meet local Regulations.
      */
@@ -362,7 +357,7 @@ export declare class TollFreeInstance {
     toJSON(): {
         accountSid: string;
         addressSid: string;
-        addressRequirements: IncomingPhoneNumberTollFreeAddressRequirement;
+        addressRequirements: TollFreeAddressRequirement;
         apiVersion: string;
         beta: boolean;
         capabilities: PhoneNumberCapabilities;
@@ -374,24 +369,24 @@ export declare class TollFreeInstance {
         origin: string;
         sid: string;
         smsApplicationSid: string;
-        smsFallbackMethod: TollFreeSmsFallbackMethod;
+        smsFallbackMethod: string;
         smsFallbackUrl: string;
-        smsMethod: TollFreeSmsMethod;
+        smsMethod: string;
         smsUrl: string;
         statusCallback: string;
-        statusCallbackMethod: TollFreeStatusCallbackMethod;
+        statusCallbackMethod: string;
         trunkSid: string;
         uri: string;
-        voiceReceiveMode: IncomingPhoneNumberTollFreeVoiceReceiveMode;
+        voiceReceiveMode: TollFreeVoiceReceiveMode;
         voiceApplicationSid: string;
         voiceCallerIdLookup: boolean;
-        voiceFallbackMethod: TollFreeVoiceFallbackMethod;
+        voiceFallbackMethod: string;
         voiceFallbackUrl: string;
-        voiceMethod: TollFreeVoiceMethod;
+        voiceMethod: string;
         voiceUrl: string;
-        emergencyStatus: IncomingPhoneNumberTollFreeEmergencyStatus;
+        emergencyStatus: TollFreeEmergencyStatus;
         emergencyAddressSid: string;
-        emergencyAddressStatus: IncomingPhoneNumberTollFreeEmergencyAddressStatus;
+        emergencyAddressStatus: TollFreeEmergencyAddressStatus;
         bundleSid: string;
         status: string;
     };

@@ -1,13 +1,13 @@
 /// <reference types="node" />
 import { inspect, InspectOptions } from "util";
 import V2010 from "../../../V2010";
-export type MessageFeedbackOutcome = "confirmed" | "unconfirmed";
+export type FeedbackOutcome = "confirmed" | "unconfirmed";
 /**
  * Options to pass to create a FeedbackInstance
  */
 export interface FeedbackListInstanceCreateOptions {
     /**  */
-    outcome?: MessageFeedbackOutcome;
+    outcome?: FeedbackOutcome;
 }
 export interface FeedbackSolution {
     accountSid: string;
@@ -44,7 +44,7 @@ export declare function FeedbackListInstance(version: V2010, accountSid: string,
 interface FeedbackResource {
     account_sid: string;
     message_sid: string;
-    outcome: MessageFeedbackOutcome;
+    outcome: FeedbackOutcome;
     date_created: Date;
     date_updated: Date;
     uri: string;
@@ -60,7 +60,7 @@ export declare class FeedbackInstance {
      * The SID of the Message resource for which the feedback was provided.
      */
     messageSid: string;
-    outcome: MessageFeedbackOutcome;
+    outcome: FeedbackOutcome;
     /**
      * The date and time in GMT that the resource was created specified in [RFC 2822](https://www.ietf.org/rfc/rfc2822.txt) format.
      */
@@ -81,7 +81,7 @@ export declare class FeedbackInstance {
     toJSON(): {
         accountSid: string;
         messageSid: string;
-        outcome: MessageFeedbackOutcome;
+        outcome: FeedbackOutcome;
         dateCreated: Date;
         dateUpdated: Date;
         uri: string;

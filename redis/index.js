@@ -20,9 +20,9 @@ var SUBSCRIBE_COMMANDS = {
     punsubscribe: true
 };
 
-function noop () {}
+function noop() { }
 
-function handle_detect_buffers_reply (reply, command, buffer_args) {
+function handle_detect_buffers_reply(reply, command, buffer_args) {
     if (buffer_args === false || this.message_buffers) {
         // If detect_buffers option was specified, then the reply from the parser will be a buffer.
         // If this command did not use Buffer arguments, then convert the reply to Strings here.
@@ -39,7 +39,7 @@ exports.debug_mode = /\bredis\b/i.test(process.env.NODE_DEBUG);
 
 // Attention: The second parameter might be removed at will and is not officially supported.
 // Do not rely on this
-function RedisClient (options, stream) {
+function RedisClient(options, stream) {
     // Copy the options so they are not mutated
     options = utils.clone(options);
     EventEmitter.call(this);
@@ -131,7 +131,7 @@ util.inherits(RedisClient, EventEmitter);
 
 RedisClient.connection_id = 0;
 
-function create_parser (self) {
+function create_parser(self) {
     return new Parser({
         returnReply: function (data) {
             self.return_reply(data);
@@ -655,7 +655,7 @@ RedisClient.prototype.drain = function () {
     this.should_buffer = false;
 };
 
-function normal_reply (self, reply) {
+function normal_reply(self, reply) {
     var command_obj = self.command_queue.shift();
     if (typeof command_obj.callback === 'function') {
         if (command_obj.command !== 'exec') {
@@ -667,7 +667,7 @@ function normal_reply (self, reply) {
     }
 }
 
-function subscribe_unsubscribe (self, reply, type) {
+function subscribe_unsubscribe(self, reply, type) {
     // Subscribe commands take an optional callback and also emit an event, but only the _last_ response is included in the callback
     // The pub sub commands return each argument in a separate return value and have to be handled that way
     var command_obj = self.command_queue.get(0);
@@ -717,7 +717,7 @@ function subscribe_unsubscribe (self, reply, type) {
     }
 }
 
-function return_pub_sub (self, reply) {
+function return_pub_sub(self, reply) {
     var type = reply[0].toString();
     if (type === 'message') { // channel, message
         if (!self.options.return_buffers || self.message_buffers) { // backwards compatible. Refactor this in v.4 to always return a string on the normal emitter
@@ -772,7 +772,7 @@ RedisClient.prototype.return_reply = function (reply) {
     }
 };
 
-function handle_offline_command (self, command_obj) {
+function handle_offline_command(self, command_obj) {
     var command = command_obj.command;
     var err, msg;
     if (self.closing || !self.enable_offline_queue) {

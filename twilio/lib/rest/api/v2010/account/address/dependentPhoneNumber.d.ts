@@ -103,11 +103,6 @@ export interface DependentPhoneNumberListInstance {
     [inspect.custom](_depth: any, options: InspectOptions): any;
 }
 export declare function DependentPhoneNumberListInstance(version: V2010, accountSid: string, addressSid: string): DependentPhoneNumberListInstance;
-export type DependentPhoneNumberVoiceMethod = "HEAD" | "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
-export type DependentPhoneNumberVoiceFallbackMethod = "HEAD" | "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
-export type DependentPhoneNumberSmsFallbackMethod = "HEAD" | "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
-export type DependentPhoneNumberSmsMethod = "HEAD" | "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
-export type DependentPhoneNumberStatusCallbackMethod = "HEAD" | "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
 interface DependentPhoneNumberPayload extends TwilioResponsePayload {
     dependent_phone_numbers: DependentPhoneNumberResource[];
 }
@@ -117,20 +112,20 @@ interface DependentPhoneNumberResource {
     friendly_name: string;
     phone_number: string;
     voice_url: string;
-    voice_method: DependentPhoneNumberVoiceMethod;
-    voice_fallback_method: DependentPhoneNumberVoiceFallbackMethod;
+    voice_method: string;
+    voice_fallback_method: string;
     voice_fallback_url: string;
     voice_caller_id_lookup: boolean;
     date_created: Date;
     date_updated: Date;
-    sms_fallback_method: DependentPhoneNumberSmsFallbackMethod;
+    sms_fallback_method: string;
     sms_fallback_url: string;
-    sms_method: DependentPhoneNumberSmsMethod;
+    sms_method: string;
     sms_url: string;
     address_requirements: DependentPhoneNumberAddressRequirement;
     capabilities: any;
     status_callback: string;
-    status_callback_method: DependentPhoneNumberStatusCallbackMethod;
+    status_callback_method: string;
     api_version: string;
     sms_application_sid: string;
     voice_application_sid: string;
@@ -165,11 +160,11 @@ export declare class DependentPhoneNumberInstance {
     /**
      * The HTTP method we use to call `voice_url`. Can be: `GET` or `POST`.
      */
-    voiceMethod: DependentPhoneNumberVoiceMethod;
+    voiceMethod: string;
     /**
      * The HTTP method we use to call `voice_fallback_url`. Can be: `GET` or `POST`.
      */
-    voiceFallbackMethod: DependentPhoneNumberVoiceFallbackMethod;
+    voiceFallbackMethod: string;
     /**
      * The URL that we call when an error occurs retrieving or executing the TwiML requested by `url`.
      */
@@ -189,7 +184,7 @@ export declare class DependentPhoneNumberInstance {
     /**
      * The HTTP method we use to call `sms_fallback_url`. Can be: `GET` or `POST`.
      */
-    smsFallbackMethod: DependentPhoneNumberSmsFallbackMethod;
+    smsFallbackMethod: string;
     /**
      * The URL that we call when an error occurs while retrieving or executing the TwiML from `sms_url`.
      */
@@ -197,7 +192,7 @@ export declare class DependentPhoneNumberInstance {
     /**
      * The HTTP method we use to call `sms_url`. Can be: `GET` or `POST`.
      */
-    smsMethod: DependentPhoneNumberSmsMethod;
+    smsMethod: string;
     /**
      * The URL we call when the phone number receives an incoming SMS message.
      */
@@ -214,7 +209,7 @@ export declare class DependentPhoneNumberInstance {
     /**
      * The HTTP method we use to call `status_callback`. Can be: `GET` or `POST`.
      */
-    statusCallbackMethod: DependentPhoneNumberStatusCallbackMethod;
+    statusCallbackMethod: string;
     /**
      * The API version used to start a new TwiML session.
      */
@@ -251,20 +246,20 @@ export declare class DependentPhoneNumberInstance {
         friendlyName: string;
         phoneNumber: string;
         voiceUrl: string;
-        voiceMethod: DependentPhoneNumberVoiceMethod;
-        voiceFallbackMethod: DependentPhoneNumberVoiceFallbackMethod;
+        voiceMethod: string;
+        voiceFallbackMethod: string;
         voiceFallbackUrl: string;
         voiceCallerIdLookup: boolean;
         dateCreated: Date;
         dateUpdated: Date;
-        smsFallbackMethod: DependentPhoneNumberSmsFallbackMethod;
+        smsFallbackMethod: string;
         smsFallbackUrl: string;
-        smsMethod: DependentPhoneNumberSmsMethod;
+        smsMethod: string;
         smsUrl: string;
         addressRequirements: DependentPhoneNumberAddressRequirement;
         capabilities: any;
         statusCallback: string;
-        statusCallbackMethod: DependentPhoneNumberStatusCallbackMethod;
+        statusCallbackMethod: string;
         apiVersion: string;
         smsApplicationSid: string;
         voiceApplicationSid: string;

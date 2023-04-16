@@ -22,6 +22,7 @@ const channel_1 = require("./v1/channel");
 const configuration_1 = require("./v1/configuration");
 const flexFlow_1 = require("./v1/flexFlow");
 const insightsAssessmentsComment_1 = require("./v1/insightsAssessmentsComment");
+const insightsConversations_1 = require("./v1/insightsConversations");
 const insightsQuestionnaires_1 = require("./v1/insightsQuestionnaires");
 const insightsQuestionnairesCategory_1 = require("./v1/insightsQuestionnairesCategory");
 const insightsQuestionnairesQuestion_1 = require("./v1/insightsQuestionnairesQuestion");
@@ -68,6 +69,12 @@ class V1 extends Version_1.default {
             this._insightsAssessmentsComment ||
                 (0, insightsAssessmentsComment_1.InsightsAssessmentsCommentListInstance)(this);
         return this._insightsAssessmentsComment;
+    }
+    /** Getter for insightsConversations resource */
+    get insightsConversations() {
+        this._insightsConversations =
+            this._insightsConversations || (0, insightsConversations_1.InsightsConversationsListInstance)(this);
+        return this._insightsConversations;
     }
     /** Getter for insightsQuestionnaires resource */
     get insightsQuestionnaires() {

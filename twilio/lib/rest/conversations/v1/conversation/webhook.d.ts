@@ -3,8 +3,8 @@ import { inspect, InspectOptions } from "util";
 import Page, { TwilioResponsePayload } from "../../../../base/Page";
 import Response from "../../../../http/response";
 import V1 from "../../V1";
-export type ConversationScopedWebhookMethod = "GET" | "POST";
-export type ConversationScopedWebhookTarget = "webhook" | "trigger" | "studio";
+export type WebhookMethod = "GET" | "POST";
+export type WebhookTarget = "webhook" | "trigger" | "studio";
 /**
  * Options to pass to update a WebhookInstance
  */
@@ -12,7 +12,7 @@ export interface WebhookContextUpdateOptions {
     /** The absolute url the webhook request should be sent to. */
     "configuration.url"?: string;
     /**  */
-    "configuration.method"?: ConversationScopedWebhookMethod;
+    "configuration.method"?: WebhookMethod;
     /** The list of events, firing webhook event for this Conversation. */
     "configuration.filters"?: Array<string>;
     /** The list of keywords, firing webhook event for this Conversation. */
@@ -25,11 +25,11 @@ export interface WebhookContextUpdateOptions {
  */
 export interface WebhookListInstanceCreateOptions {
     /**  */
-    target: ConversationScopedWebhookTarget;
+    target: WebhookTarget;
     /** The absolute url the webhook request should be sent to. */
     "configuration.url"?: string;
     /**  */
-    "configuration.method"?: ConversationScopedWebhookMethod;
+    "configuration.method"?: WebhookMethod;
     /** The list of events, firing webhook event for this Conversation. */
     "configuration.filters"?: Array<string>;
     /** The list of keywords, firing webhook event for this Conversation. */

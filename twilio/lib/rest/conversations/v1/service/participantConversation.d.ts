@@ -3,7 +3,7 @@ import { inspect, InspectOptions } from "util";
 import Page, { TwilioResponsePayload } from "../../../../base/Page";
 import Response from "../../../../http/response";
 import V1 from "../../V1";
-export type ServiceParticipantConversationState = "inactive" | "active" | "closed";
+export type ParticipantConversationState = "inactive" | "active" | "closed";
 /**
  * Options to pass to each
  */
@@ -130,7 +130,7 @@ interface ParticipantConversationResource {
     conversation_date_created: Date;
     conversation_date_updated: Date;
     conversation_created_by: string;
-    conversation_state: ServiceParticipantConversationState;
+    conversation_state: ParticipantConversationState;
     conversation_timers: any;
     links: Record<string, string>;
 }
@@ -189,7 +189,7 @@ export declare class ParticipantConversationInstance {
      * Identity of the creator of this Conversation.
      */
     conversationCreatedBy: string;
-    conversationState: ServiceParticipantConversationState;
+    conversationState: ParticipantConversationState;
     /**
      * Timer date values representing state update for this conversation.
      */
@@ -217,7 +217,7 @@ export declare class ParticipantConversationInstance {
         conversationDateCreated: Date;
         conversationDateUpdated: Date;
         conversationCreatedBy: string;
-        conversationState: ServiceParticipantConversationState;
+        conversationState: ParticipantConversationState;
         conversationTimers: any;
         links: Record<string, string>;
     };

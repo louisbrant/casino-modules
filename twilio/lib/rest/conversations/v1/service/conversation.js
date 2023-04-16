@@ -290,6 +290,12 @@ function ConversationListInstance(version, chatServiceSid) {
             params = params || {};
         }
         let data = {};
+        if (params["startDate"] !== undefined)
+            data["StartDate"] = params["startDate"];
+        if (params["endDate"] !== undefined)
+            data["EndDate"] = params["endDate"];
+        if (params["state"] !== undefined)
+            data["State"] = params["state"];
         if (params["pageSize"] !== undefined)
             data["PageSize"] = params["pageSize"];
         if (params.pageNumber !== undefined)

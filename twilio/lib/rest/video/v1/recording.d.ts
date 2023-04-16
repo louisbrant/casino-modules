@@ -117,7 +117,6 @@ export declare class RecordingContextImpl implements RecordingContext {
     toJSON(): RecordingContextSolution;
     [inspect.custom](_depth: any, options: InspectOptions): string;
 }
-export type RecordingStatusCallbackMethod = "HEAD" | "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
 interface RecordingPayload extends TwilioResponsePayload {
     recordings: RecordingResource[];
 }
@@ -138,7 +137,7 @@ interface RecordingResource {
     offset: number;
     media_external_location: string;
     status_callback: string;
-    status_callback_method: RecordingStatusCallbackMethod;
+    status_callback_method: string;
     links: Record<string, string>;
 }
 export declare class RecordingInstance {
@@ -201,7 +200,7 @@ export declare class RecordingInstance {
     /**
      * The HTTP method used to call `status_callback`. Can be: `POST` or `GET`, defaults to `POST`.
      */
-    statusCallbackMethod: RecordingStatusCallbackMethod;
+    statusCallbackMethod: string;
     /**
      * The URLs of related resources.
      */
@@ -245,7 +244,7 @@ export declare class RecordingInstance {
         offset: number;
         mediaExternalLocation: string;
         statusCallback: string;
-        statusCallbackMethod: RecordingStatusCallbackMethod;
+        statusCallbackMethod: string;
         links: Record<string, string>;
     };
     [inspect.custom](_depth: any, options: InspectOptions): string;

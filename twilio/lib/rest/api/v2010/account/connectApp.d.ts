@@ -118,7 +118,6 @@ export declare class ConnectAppContextImpl implements ConnectAppContext {
     toJSON(): ConnectAppContextSolution;
     [inspect.custom](_depth: any, options: InspectOptions): string;
 }
-export type ConnectAppDeauthorizeCallbackMethod = "HEAD" | "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
 interface ConnectAppPayload extends TwilioResponsePayload {
     connect_apps: ConnectAppResource[];
 }
@@ -126,7 +125,7 @@ interface ConnectAppResource {
     account_sid: string;
     authorize_redirect_url: string;
     company_name: string;
-    deauthorize_callback_method: ConnectAppDeauthorizeCallbackMethod;
+    deauthorize_callback_method: string;
     deauthorize_callback_url: string;
     description: string;
     friendly_name: string;
@@ -155,7 +154,7 @@ export declare class ConnectAppInstance {
     /**
      * The HTTP method we use to call `deauthorize_callback_url`.
      */
-    deauthorizeCallbackMethod: ConnectAppDeauthorizeCallbackMethod;
+    deauthorizeCallbackMethod: string;
     /**
      * The URL we call using the `deauthorize_callback_method` to de-authorize the Connect App.
      */
@@ -227,7 +226,7 @@ export declare class ConnectAppInstance {
         accountSid: string;
         authorizeRedirectUrl: string;
         companyName: string;
-        deauthorizeCallbackMethod: ConnectAppDeauthorizeCallbackMethod;
+        deauthorizeCallbackMethod: string;
         deauthorizeCallbackUrl: string;
         description: string;
         friendlyName: string;

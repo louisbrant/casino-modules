@@ -1,8 +1,8 @@
 /// <reference types="node" />
 import { inspect, InspectOptions } from "util";
 import V1 from "../../V1";
-export type ConfigurationWebhookMethod = "GET" | "POST";
-export type ConfigurationWebhookTarget = "webhook" | "flex";
+export type WebhookMethod = "GET" | "POST";
+export type WebhookTarget = "webhook" | "flex";
 /**
  * Options to pass to update a WebhookInstance
  */
@@ -16,7 +16,7 @@ export interface WebhookContextUpdateOptions {
     /** The absolute url the post-event webhook request should be sent to. */
     postWebhookUrl?: string;
     /**  */
-    target?: ConfigurationWebhookTarget;
+    target?: WebhookTarget;
 }
 export interface WebhookContext {
     /**
@@ -69,11 +69,11 @@ export declare class WebhookContextImpl implements WebhookContext {
 }
 interface WebhookResource {
     account_sid: string;
-    method: ConfigurationWebhookMethod;
+    method: WebhookMethod;
     filters: Array<string>;
     pre_webhook_url: string;
     post_webhook_url: string;
-    target: ConfigurationWebhookTarget;
+    target: WebhookTarget;
     url: string;
 }
 export declare class WebhookInstance {
@@ -85,7 +85,7 @@ export declare class WebhookInstance {
      * The unique ID of the [Account](https://www.twilio.com/docs/iam/api/account) responsible for this conversation.
      */
     accountSid: string;
-    method: ConfigurationWebhookMethod;
+    method: WebhookMethod;
     /**
      * The list of webhook event triggers that are enabled for this Service: `onMessageAdded`, `onMessageUpdated`, `onMessageRemoved`, `onConversationUpdated`, `onConversationRemoved`, `onParticipantAdded`, `onParticipantUpdated`, `onParticipantRemoved`
      */
@@ -98,7 +98,7 @@ export declare class WebhookInstance {
      * The absolute url the post-event webhook request should be sent to.
      */
     postWebhookUrl: string;
-    target: ConfigurationWebhookTarget;
+    target: WebhookTarget;
     /**
      * An absolute API resource API resource URL for this webhook.
      */
@@ -136,11 +136,11 @@ export declare class WebhookInstance {
      */
     toJSON(): {
         accountSid: string;
-        method: ConfigurationWebhookMethod;
+        method: WebhookMethod;
         filters: string[];
         preWebhookUrl: string;
         postWebhookUrl: string;
-        target: ConfigurationWebhookTarget;
+        target: WebhookTarget;
         url: string;
     };
     [inspect.custom](_depth: any, options: InspectOptions): string;

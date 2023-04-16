@@ -71,6 +71,8 @@ function CallSummariesListInstance(version) {
             data["Subaccount"] = params["subaccount"];
         if (params["abnormalSession"] !== undefined)
             data["AbnormalSession"] = serialize.bool(params["abnormalSession"]);
+        if (params["answeredBy"] !== undefined)
+            data["AnsweredBy"] = params["answeredBy"];
         if (params["pageSize"] !== undefined)
             data["PageSize"] = params["pageSize"];
         if (params.pageNumber !== undefined)

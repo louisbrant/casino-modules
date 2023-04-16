@@ -170,9 +170,6 @@ export declare class DomainContextImpl implements DomainContext {
     toJSON(): DomainContextSolution;
     [inspect.custom](_depth: any, options: InspectOptions): string;
 }
-export type DomainVoiceFallbackMethod = "HEAD" | "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
-export type DomainVoiceMethod = "HEAD" | "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
-export type DomainVoiceStatusCallbackMethod = "HEAD" | "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
 interface DomainPayload extends TwilioResponsePayload {
     domains: DomainResource[];
 }
@@ -186,10 +183,10 @@ interface DomainResource {
     friendly_name: string;
     sid: string;
     uri: string;
-    voice_fallback_method: DomainVoiceFallbackMethod;
+    voice_fallback_method: string;
     voice_fallback_url: string;
-    voice_method: DomainVoiceMethod;
-    voice_status_callback_method: DomainVoiceStatusCallbackMethod;
+    voice_method: string;
+    voice_status_callback_method: string;
     voice_status_callback_url: string;
     voice_url: string;
     subresource_uris: Record<string, string>;
@@ -243,7 +240,7 @@ export declare class DomainInstance {
     /**
      * The HTTP method we use to call `voice_fallback_url`. Can be: `GET` or `POST`.
      */
-    voiceFallbackMethod: DomainVoiceFallbackMethod;
+    voiceFallbackMethod: string;
     /**
      * The URL that we call when an error occurs while retrieving or executing the TwiML requested from `voice_url`.
      */
@@ -251,11 +248,11 @@ export declare class DomainInstance {
     /**
      * The HTTP method we use to call `voice_url`. Can be: `GET` or `POST`.
      */
-    voiceMethod: DomainVoiceMethod;
+    voiceMethod: string;
     /**
      * The HTTP method we use to call `voice_status_callback_url`. Either `GET` or `POST`.
      */
-    voiceStatusCallbackMethod: DomainVoiceStatusCallbackMethod;
+    voiceStatusCallbackMethod: string;
     /**
      * The URL that we call to pass status parameters (such as call ended) to your application.
      */
@@ -349,10 +346,10 @@ export declare class DomainInstance {
         friendlyName: string;
         sid: string;
         uri: string;
-        voiceFallbackMethod: DomainVoiceFallbackMethod;
+        voiceFallbackMethod: string;
         voiceFallbackUrl: string;
-        voiceMethod: DomainVoiceMethod;
-        voiceStatusCallbackMethod: DomainVoiceStatusCallbackMethod;
+        voiceMethod: string;
+        voiceStatusCallbackMethod: string;
         voiceStatusCallbackUrl: string;
         voiceUrl: string;
         subresourceUris: Record<string, string>;

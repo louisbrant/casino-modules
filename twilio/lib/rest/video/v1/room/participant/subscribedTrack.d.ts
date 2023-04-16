@@ -3,7 +3,7 @@ import { inspect, InspectOptions } from "util";
 import Page, { TwilioResponsePayload } from "../../../../../base/Page";
 import Response from "../../../../../http/response";
 import V1 from "../../../V1";
-export type RoomParticipantSubscribedTrackKind = "audio" | "video" | "data";
+export type SubscribedTrackKind = "audio" | "video" | "data";
 /**
  * Options to pass to each
  */
@@ -83,7 +83,7 @@ interface SubscribedTrackResource {
     date_created: Date;
     date_updated: Date;
     enabled: boolean;
-    kind: RoomParticipantSubscribedTrackKind;
+    kind: SubscribedTrackKind;
     url: string;
 }
 export declare class SubscribedTrackInstance {
@@ -123,7 +123,7 @@ export declare class SubscribedTrackInstance {
      * Whether the track is enabled.
      */
     enabled: boolean;
-    kind: RoomParticipantSubscribedTrackKind;
+    kind: SubscribedTrackKind;
     /**
      * The absolute URL of the resource.
      */
@@ -151,7 +151,7 @@ export declare class SubscribedTrackInstance {
         dateCreated: Date;
         dateUpdated: Date;
         enabled: boolean;
-        kind: RoomParticipantSubscribedTrackKind;
+        kind: SubscribedTrackKind;
         url: string;
     };
     [inspect.custom](_depth: any, options: InspectOptions): string;

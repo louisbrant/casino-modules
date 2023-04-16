@@ -21,7 +21,9 @@ const brandRegistration_1 = require("./v1/brandRegistration");
 const deactivations_1 = require("./v1/deactivations");
 const domainCerts_1 = require("./v1/domainCerts");
 const domainConfig_1 = require("./v1/domainConfig");
+const domainConfigMessagingService_1 = require("./v1/domainConfigMessagingService");
 const externalCampaign_1 = require("./v1/externalCampaign");
+const linkshorteningMessagingService_1 = require("./v1/linkshorteningMessagingService");
 const service_1 = require("./v1/service");
 const tollfreeVerification_1 = require("./v1/tollfreeVerification");
 const usecase_1 = require("./v1/usecase");
@@ -56,11 +58,25 @@ class V1 extends Version_1.default {
         this._domainConfig = this._domainConfig || (0, domainConfig_1.DomainConfigListInstance)(this);
         return this._domainConfig;
     }
+    /** Getter for domainConfigMessagingService resource */
+    get domainConfigMessagingService() {
+        this._domainConfigMessagingService =
+            this._domainConfigMessagingService ||
+                (0, domainConfigMessagingService_1.DomainConfigMessagingServiceListInstance)(this);
+        return this._domainConfigMessagingService;
+    }
     /** Getter for externalCampaign resource */
     get externalCampaign() {
         this._externalCampaign =
             this._externalCampaign || (0, externalCampaign_1.ExternalCampaignListInstance)(this);
         return this._externalCampaign;
+    }
+    /** Getter for linkshorteningMessagingService resource */
+    get linkshorteningMessagingService() {
+        this._linkshorteningMessagingService =
+            this._linkshorteningMessagingService ||
+                (0, linkshorteningMessagingService_1.LinkshorteningMessagingServiceListInstance)(this);
+        return this._linkshorteningMessagingService;
     }
     /** Getter for services resource */
     get services() {

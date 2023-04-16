@@ -3,10 +3,11 @@ import { inspect, InspectOptions } from "util";
 import Page, { TwilioResponsePayload } from "../../../base/Page";
 import Response from "../../../http/response";
 import V1 from "../V1";
+import { BrandRegistrationOtpListInstance } from "./brandRegistration/brandRegistrationOtp";
 import { BrandVettingListInstance } from "./brandRegistration/brandVetting";
-export type BrandRegistrationsBrandFeedback = "TAX_ID" | "STOCK_SYMBOL" | "NONPROFIT" | "GOVERNMENT_ENTITY" | "OTHERS";
-export type BrandRegistrationsIdentityStatus = "SELF_DECLARED" | "UNVERIFIED" | "VERIFIED" | "VETTED_VERIFIED";
-export type BrandRegistrationsStatus = "PENDING" | "APPROVED" | "FAILED" | "IN_REVIEW" | "DELETED";
+export type BrandRegistrationBrandFeedback = "TAX_ID" | "STOCK_SYMBOL" | "NONPROFIT" | "GOVERNMENT_ENTITY" | "OTHERS";
+export type BrandRegistrationIdentityStatus = "SELF_DECLARED" | "UNVERIFIED" | "VERIFIED" | "VETTED_VERIFIED";
+export type BrandRegistrationStatus = "PENDING" | "APPROVED" | "FAILED" | "IN_REVIEW" | "DELETED";
 /**
  * Options to pass to create a BrandRegistrationInstance
  */
@@ -15,7 +16,7 @@ export interface BrandRegistrationListInstanceCreateOptions {
     customerProfileBundleSid: string;
     /** A2P Messaging Profile Bundle Sid. */
     a2PProfileBundleSid: string;
-    /** Type of brand being created. One of: \\\"STANDARD\\\", \\\"STARTER\\\". STARTER is for low volume, starter use cases. STANDARD is for all other use cases. */
+    /** Type of brand being created. One of: \\\"STANDARD\\\", \\\"SOLE_PROPRIETOR\\\". SOLE_PROPRIETOR is for low volume, SOLE_PROPRIETOR use cases. STANDARD is for all other use cases. */
     brandType?: string;
     /** A boolean that specifies whether brand should be a mock or not. If true, brand will be registered as a mock brand. Defaults to false if no value is provided. */
     mock?: boolean;
@@ -56,6 +57,7 @@ export interface BrandRegistrationListInstancePageOptions {
     pageToken?: string;
 }
 export interface BrandRegistrationContext {
+    brandRegistrationOtps: BrandRegistrationOtpListInstance;
     brandVettings: BrandVettingListInstance;
     /**
      * Fetch a BrandRegistrationInstance
@@ -86,8 +88,10 @@ export declare class BrandRegistrationContextImpl implements BrandRegistrationCo
     protected _version: V1;
     protected _solution: BrandRegistrationContextSolution;
     protected _uri: string;
+    protected _brandRegistrationOtps?: BrandRegistrationOtpListInstance;
     protected _brandVettings?: BrandVettingListInstance;
     constructor(_version: V1, sid: string);
+    get brandRegistrationOtps(): BrandRegistrationOtpListInstance;
     get brandVettings(): BrandVettingListInstance;
     fetch(callback?: (error: Error | null, item?: BrandRegistrationInstance) => any): Promise<BrandRegistrationInstance>;
     update(callback?: (error: Error | null, item?: BrandRegistrationInstance) => any): Promise<BrandRegistrationInstance>;
@@ -110,13 +114,13 @@ interface BrandRegistrationResource {
     date_created: Date;
     date_updated: Date;
     brand_type: string;
-    status: BrandRegistrationsStatus;
+    status: BrandRegistrationStatus;
     tcr_id: string;
     failure_reason: string;
     url: string;
     brand_score: number;
-    brand_feedback: Array<BrandRegistrationsBrandFeedback>;
-    identity_status: BrandRegistrationsIdentityStatus;
+    brand_feedback: Array<BrandRegistrationBrandFeedback>;
+    identity_status: BrandRegistrationIdentityStatus;
     russell_3000: boolean;
     government_entity: boolean;
     tax_exempt_status: string;
@@ -154,10 +158,10 @@ export declare class BrandRegistrationInstance {
      */
     dateUpdated: Date;
     /**
-     * Type of brand. One of: \"STANDARD\", \"STARTER\". STARTER is for the low volume, STARTER campaign use case. There can only be one STARTER campaign created per STARTER brand. STANDARD is for all other campaign use cases. Multiple campaign use cases can be created per STANDARD brand.
+     * Type of brand. One of: \"STANDARD\", \"SOLE_PROPRIETOR\". SOLE_PROPRIETOR is for the low volume, SOLE_PROPRIETOR campaign use case. There can only be one SOLE_PROPRIETOR campaign created per SOLE_PROPRIETOR brand. STANDARD is for all other campaign use cases. Multiple campaign use cases can be created per STANDARD brand.
      */
     brandType: string;
-    status: BrandRegistrationsStatus;
+    status: BrandRegistrationStatus;
     /**
      * Campaign Registry (TCR) Brand ID. Assigned only after successful brand registration.
      */
@@ -177,8 +181,8 @@ export declare class BrandRegistrationInstance {
     /**
      * Feedback on how to improve brand score
      */
-    brandFeedback: Array<BrandRegistrationsBrandFeedback>;
-    identityStatus: BrandRegistrationsIdentityStatus;
+    brandFeedback: Array<BrandRegistrationBrandFeedback>;
+    identityStatus: BrandRegistrationIdentityStatus;
     /**
      * Publicly traded company identified in the Russell 3000 Index
      */
@@ -218,6 +222,10 @@ export declare class BrandRegistrationInstance {
      */
     update(callback?: (error: Error | null, item?: BrandRegistrationInstance) => any): Promise<BrandRegistrationInstance>;
     /**
+     * Access the brandRegistrationOtps.
+     */
+    brandRegistrationOtps(): BrandRegistrationOtpListInstance;
+    /**
      * Access the brandVettings.
      */
     brandVettings(): BrandVettingListInstance;
@@ -234,13 +242,13 @@ export declare class BrandRegistrationInstance {
         dateCreated: Date;
         dateUpdated: Date;
         brandType: string;
-        status: BrandRegistrationsStatus;
+        status: BrandRegistrationStatus;
         tcrId: string;
         failureReason: string;
         url: string;
         brandScore: number;
-        brandFeedback: BrandRegistrationsBrandFeedback[];
-        identityStatus: BrandRegistrationsIdentityStatus;
+        brandFeedback: BrandRegistrationBrandFeedback[];
+        identityStatus: BrandRegistrationIdentityStatus;
         russell3000: boolean;
         governmentEntity: boolean;
         taxExemptStatus: string;

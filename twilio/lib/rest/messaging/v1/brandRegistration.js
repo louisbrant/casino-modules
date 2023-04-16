@@ -22,6 +22,7 @@ const Page_1 = __importDefault(require("../../../base/Page"));
 const deserialize = require("../../../base/deserialize");
 const serialize = require("../../../base/serialize");
 const utility_1 = require("../../../base/utility");
+const brandRegistrationOtp_1 = require("./brandRegistration/brandRegistrationOtp");
 const brandVetting_1 = require("./brandRegistration/brandVetting");
 class BrandRegistrationContextImpl {
     constructor(_version, sid) {
@@ -31,6 +32,12 @@ class BrandRegistrationContextImpl {
         }
         this._solution = { sid };
         this._uri = `/a2p/BrandRegistrations/${sid}`;
+    }
+    get brandRegistrationOtps() {
+        this._brandRegistrationOtps =
+            this._brandRegistrationOtps ||
+                (0, brandRegistrationOtp_1.BrandRegistrationOtpListInstance)(this._version, this._solution.sid);
+        return this._brandRegistrationOtps;
     }
     get brandVettings() {
         this._brandVettings =
@@ -121,6 +128,12 @@ class BrandRegistrationInstance {
      */
     update(callback) {
         return this._proxy.update(callback);
+    }
+    /**
+     * Access the brandRegistrationOtps.
+     */
+    brandRegistrationOtps() {
+        return this._proxy.brandRegistrationOtps;
     }
     /**
      * Access the brandVettings.

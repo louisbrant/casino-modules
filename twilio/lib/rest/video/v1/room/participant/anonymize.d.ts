@@ -1,7 +1,7 @@
 /// <reference types="node" />
 import { inspect, InspectOptions } from "util";
 import V1 from "../../../V1";
-export type RoomParticipantAnonymizeStatus = "connected" | "disconnected";
+export type AnonymizeStatus = "connected" | "disconnected";
 export interface AnonymizeContext {
     /**
      * Update a AnonymizeInstance
@@ -39,7 +39,7 @@ interface AnonymizeResource {
     sid: string;
     room_sid: string;
     account_sid: string;
-    status: RoomParticipantAnonymizeStatus;
+    status: AnonymizeStatus;
     identity: string;
     date_created: Date;
     date_updated: Date;
@@ -65,7 +65,7 @@ export declare class AnonymizeInstance {
      * The SID of the [Account](https://www.twilio.com/docs/iam/api/account) that created the RoomParticipant resource.
      */
     accountSid: string;
-    status: RoomParticipantAnonymizeStatus;
+    status: AnonymizeStatus;
     /**
      * The SID of the participant.
      */
@@ -112,7 +112,7 @@ export declare class AnonymizeInstance {
         sid: string;
         roomSid: string;
         accountSid: string;
-        status: RoomParticipantAnonymizeStatus;
+        status: AnonymizeStatus;
         identity: string;
         dateCreated: Date;
         dateUpdated: Date;

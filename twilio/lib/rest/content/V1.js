@@ -18,6 +18,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const Version_1 = __importDefault(require("../../base/Version"));
 const content_1 = require("./v1/content");
+const contentAndApprovals_1 = require("./v1/contentAndApprovals");
 const legacyContent_1 = require("./v1/legacyContent");
 class V1 extends Version_1.default {
     /**
@@ -32,6 +33,12 @@ class V1 extends Version_1.default {
     get contents() {
         this._contents = this._contents || (0, content_1.ContentListInstance)(this);
         return this._contents;
+    }
+    /** Getter for contentAndApprovals resource */
+    get contentAndApprovals() {
+        this._contentAndApprovals =
+            this._contentAndApprovals || (0, contentAndApprovals_1.ContentAndApprovalsListInstance)(this);
+        return this._contentAndApprovals;
     }
     /** Getter for legacyContents resource */
     get legacyContents() {

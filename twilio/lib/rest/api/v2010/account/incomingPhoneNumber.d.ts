@@ -236,11 +236,6 @@ export declare class IncomingPhoneNumberContextImpl implements IncomingPhoneNumb
     toJSON(): IncomingPhoneNumberContextSolution;
     [inspect.custom](_depth: any, options: InspectOptions): string;
 }
-export type IncomingPhoneNumberSmsFallbackMethod = "HEAD" | "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
-export type IncomingPhoneNumberSmsMethod = "HEAD" | "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
-export type IncomingPhoneNumberStatusCallbackMethod = "HEAD" | "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
-export type IncomingPhoneNumberVoiceFallbackMethod = "HEAD" | "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
-export type IncomingPhoneNumberVoiceMethod = "HEAD" | "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
 interface IncomingPhoneNumberPayload extends TwilioResponsePayload {
     incoming_phone_numbers: IncomingPhoneNumberResource[];
 }
@@ -259,20 +254,20 @@ interface IncomingPhoneNumberResource {
     origin: string;
     sid: string;
     sms_application_sid: string;
-    sms_fallback_method: IncomingPhoneNumberSmsFallbackMethod;
+    sms_fallback_method: string;
     sms_fallback_url: string;
-    sms_method: IncomingPhoneNumberSmsMethod;
+    sms_method: string;
     sms_url: string;
     status_callback: string;
-    status_callback_method: IncomingPhoneNumberStatusCallbackMethod;
+    status_callback_method: string;
     trunk_sid: string;
     uri: string;
     voice_receive_mode: IncomingPhoneNumberVoiceReceiveMode;
     voice_application_sid: string;
     voice_caller_id_lookup: boolean;
-    voice_fallback_method: IncomingPhoneNumberVoiceFallbackMethod;
+    voice_fallback_method: string;
     voice_fallback_url: string;
-    voice_method: IncomingPhoneNumberVoiceMethod;
+    voice_method: string;
     voice_url: string;
     emergency_status: IncomingPhoneNumberEmergencyStatus;
     emergency_address_sid: string;
@@ -338,7 +333,7 @@ export declare class IncomingPhoneNumberInstance {
     /**
      * The HTTP method we use to call `sms_fallback_url`. Can be: `GET` or `POST`.
      */
-    smsFallbackMethod: IncomingPhoneNumberSmsFallbackMethod;
+    smsFallbackMethod: string;
     /**
      * The URL that we call when an error occurs while retrieving or executing the TwiML from `sms_url`.
      */
@@ -346,7 +341,7 @@ export declare class IncomingPhoneNumberInstance {
     /**
      * The HTTP method we use to call `sms_url`. Can be: `GET` or `POST`.
      */
-    smsMethod: IncomingPhoneNumberSmsMethod;
+    smsMethod: string;
     /**
      * The URL we call when the phone number receives an incoming SMS message.
      */
@@ -358,7 +353,7 @@ export declare class IncomingPhoneNumberInstance {
     /**
      * The HTTP method we use to call `status_callback`. Can be: `GET` or `POST`.
      */
-    statusCallbackMethod: IncomingPhoneNumberStatusCallbackMethod;
+    statusCallbackMethod: string;
     /**
      * The SID of the Trunk that handles calls to the phone number. If a `trunk_sid` is present, we ignore all of the voice urls and voice applications and use those set on the Trunk. Setting a `trunk_sid` will automatically delete your `voice_application_sid` and vice versa.
      */
@@ -379,7 +374,7 @@ export declare class IncomingPhoneNumberInstance {
     /**
      * The HTTP method we use to call `voice_fallback_url`. Can be: `GET` or `POST`.
      */
-    voiceFallbackMethod: IncomingPhoneNumberVoiceFallbackMethod;
+    voiceFallbackMethod: string;
     /**
      * The URL that we call when an error occurs retrieving or executing the TwiML requested by `url`.
      */
@@ -387,7 +382,7 @@ export declare class IncomingPhoneNumberInstance {
     /**
      * The HTTP method we use to call `voice_url`. Can be: `GET` or `POST`.
      */
-    voiceMethod: IncomingPhoneNumberVoiceMethod;
+    voiceMethod: string;
     /**
      * The URL we call when the phone number receives a call. The `voice_url` will not be used if a `voice_application_sid` or a `trunk_sid` is set.
      */
@@ -461,20 +456,20 @@ export declare class IncomingPhoneNumberInstance {
         origin: string;
         sid: string;
         smsApplicationSid: string;
-        smsFallbackMethod: IncomingPhoneNumberSmsFallbackMethod;
+        smsFallbackMethod: string;
         smsFallbackUrl: string;
-        smsMethod: IncomingPhoneNumberSmsMethod;
+        smsMethod: string;
         smsUrl: string;
         statusCallback: string;
-        statusCallbackMethod: IncomingPhoneNumberStatusCallbackMethod;
+        statusCallbackMethod: string;
         trunkSid: string;
         uri: string;
         voiceReceiveMode: IncomingPhoneNumberVoiceReceiveMode;
         voiceApplicationSid: string;
         voiceCallerIdLookup: boolean;
-        voiceFallbackMethod: IncomingPhoneNumberVoiceFallbackMethod;
+        voiceFallbackMethod: string;
         voiceFallbackUrl: string;
-        voiceMethod: IncomingPhoneNumberVoiceMethod;
+        voiceMethod: string;
         voiceUrl: string;
         emergencyStatus: IncomingPhoneNumberEmergencyStatus;
         emergencyAddressSid: string;

@@ -3,7 +3,7 @@ import { inspect, InspectOptions } from "util";
 import Page, { TwilioResponsePayload } from "../../../../base/Page";
 import Response from "../../../../http/response";
 import V1 from "../../V1";
-export type TrustProductEvaluationStatus = "compliant" | "noncompliant";
+export type TrustProductsEvaluationsStatus = "compliant" | "noncompliant";
 /**
  * Options to pass to create a TrustProductsEvaluationsInstance
  */
@@ -85,7 +85,7 @@ interface TrustProductsEvaluationsResource {
     account_sid: string;
     policy_sid: string;
     trust_product_sid: string;
-    status: TrustProductEvaluationStatus;
+    status: TrustProductsEvaluationsStatus;
     results: Array<any>;
     date_created: Date;
     url: string;
@@ -111,7 +111,7 @@ export declare class TrustProductsEvaluationsInstance {
      * The unique string that we created to identify the trust_product resource.
      */
     trustProductSid: string;
-    status: TrustProductEvaluationStatus;
+    status: TrustProductsEvaluationsStatus;
     /**
      * The results of the Evaluation which includes the valid and invalid attributes.
      */
@@ -137,7 +137,7 @@ export declare class TrustProductsEvaluationsInstance {
         accountSid: string;
         policySid: string;
         trustProductSid: string;
-        status: TrustProductEvaluationStatus;
+        status: TrustProductsEvaluationsStatus;
         results: any[];
         dateCreated: Date;
         url: string;

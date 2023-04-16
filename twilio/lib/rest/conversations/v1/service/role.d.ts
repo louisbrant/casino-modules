@@ -3,7 +3,7 @@ import { inspect, InspectOptions } from "util";
 import Page, { TwilioResponsePayload } from "../../../../base/Page";
 import Response from "../../../../http/response";
 import V1 from "../../V1";
-export type ServiceRoleRoleType = "conversation" | "service";
+export type RoleRoleType = "conversation" | "service";
 /**
  * Options to pass to update a RoleInstance
  */
@@ -18,7 +18,7 @@ export interface RoleListInstanceCreateOptions {
     /** A descriptive string that you create to describe the new resource. It can be up to 64 characters long. */
     friendlyName: string;
     /**  */
-    type: ServiceRoleRoleType;
+    type: RoleRoleType;
     /** A permission that you grant to the new role. Only one permission can be granted per parameter. To assign more than one permission, repeat this parameter for each permission value. The values for this parameter depend on the role\\\'s `type`. */
     permission: Array<string>;
 }
@@ -115,7 +115,7 @@ interface RoleResource {
     account_sid: string;
     chat_service_sid: string;
     friendly_name: string;
-    type: ServiceRoleRoleType;
+    type: RoleRoleType;
     permissions: Array<string>;
     date_created: Date;
     date_updated: Date;
@@ -142,7 +142,7 @@ export declare class RoleInstance {
      * The string that you assigned to describe the resource.
      */
     friendlyName: string;
-    type: ServiceRoleRoleType;
+    type: RoleRoleType;
     /**
      * An array of the permissions the role has been granted.
      */
@@ -195,7 +195,7 @@ export declare class RoleInstance {
         accountSid: string;
         chatServiceSid: string;
         friendlyName: string;
-        type: ServiceRoleRoleType;
+        type: RoleRoleType;
         permissions: string[];
         dateCreated: Date;
         dateUpdated: Date;

@@ -3,7 +3,7 @@ import { inspect, InspectOptions } from "util";
 import Page, { TwilioResponsePayload } from "../../../../../../base/Page";
 import Response from "../../../../../../http/response";
 import V1 from "../../../../V1";
-export type ServiceConversationMessageReceiptDeliveryStatus = "read" | "failed" | "delivered" | "undelivered" | "sent";
+export type DeliveryReceiptDeliveryStatus = "read" | "failed" | "delivered" | "undelivered" | "sent";
 /**
  * Options to pass to each
  */
@@ -83,7 +83,7 @@ interface DeliveryReceiptResource {
     sid: string;
     channel_message_sid: string;
     participant_sid: string;
-    status: ServiceConversationMessageReceiptDeliveryStatus;
+    status: DeliveryReceiptDeliveryStatus;
     error_code: number;
     date_created: Date;
     date_updated: Date;
@@ -122,7 +122,7 @@ export declare class DeliveryReceiptInstance {
      * The unique ID of the participant the delivery receipt belongs to.
      */
     participantSid: string;
-    status: ServiceConversationMessageReceiptDeliveryStatus;
+    status: DeliveryReceiptDeliveryStatus;
     /**
      * The message [delivery error code](https://www.twilio.com/docs/sms/api/message-resource#delivery-related-errors) for a `failed` status,
      */
@@ -161,7 +161,7 @@ export declare class DeliveryReceiptInstance {
         sid: string;
         channelMessageSid: string;
         participantSid: string;
-        status: ServiceConversationMessageReceiptDeliveryStatus;
+        status: DeliveryReceiptDeliveryStatus;
         errorCode: number;
         dateCreated: Date;
         dateUpdated: Date;

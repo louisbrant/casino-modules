@@ -49,6 +49,8 @@ export interface CallSummariesListInstanceEachOptions {
     subaccount?: string;
     /**  */
     abnormalSession?: boolean;
+    /**  */
+    answeredBy?: CallSummariesAnsweredBy;
     /** How many resources to return in each list page. The default is 50, and the maximum is 1000. */
     pageSize?: number;
     /** Function to process each record. If this and a positional callback are passed, this one will be used */
@@ -98,6 +100,8 @@ export interface CallSummariesListInstanceOptions {
     subaccount?: string;
     /**  */
     abnormalSession?: boolean;
+    /**  */
+    answeredBy?: CallSummariesAnsweredBy;
     /** How many resources to return in each list page. The default is 50, and the maximum is 1000. */
     pageSize?: number;
     /** Upper limit for the number of records to return. list() guarantees never to return more than limit. Default is no limit */
@@ -143,6 +147,8 @@ export interface CallSummariesListInstancePageOptions {
     subaccount?: string;
     /**  */
     abnormalSession?: boolean;
+    /**  */
+    answeredBy?: CallSummariesAnsweredBy;
     /** How many resources to return in each list page. The default is 50, and the maximum is 1000. */
     pageSize?: number;
     /** Page Number, this value is simply for client state */

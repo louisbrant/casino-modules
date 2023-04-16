@@ -1,7 +1,7 @@
 /// <reference types="node" />
 import { inspect, InspectOptions } from "util";
 import V2010 from "../../../V2010";
-export type CallFeedbackSummaryStatus = "queued" | "in-progress" | "completed" | "failed";
+export type FeedbackSummaryStatus = "queued" | "in-progress" | "completed" | "failed";
 /**
  * Options to pass to create a FeedbackSummaryInstance
  */
@@ -73,7 +73,7 @@ interface FeedbackSummaryResource {
     quality_score_standard_deviation: number;
     sid: string;
     start_date: Date;
-    status: CallFeedbackSummaryStatus;
+    status: FeedbackSummaryStatus;
 }
 export declare class FeedbackSummaryInstance {
     protected _version: V2010;
@@ -132,7 +132,7 @@ export declare class FeedbackSummaryInstance {
      * The first date for which feedback entries are included in this feedback summary, formatted as `YYYY-MM-DD` and specified in UTC.
      */
     startDate: Date;
-    status: CallFeedbackSummaryStatus;
+    status: FeedbackSummaryStatus;
     private get _proxy();
     /**
      * Remove a FeedbackSummaryInstance
@@ -169,7 +169,7 @@ export declare class FeedbackSummaryInstance {
         qualityScoreStandardDeviation: number;
         sid: string;
         startDate: Date;
-        status: CallFeedbackSummaryStatus;
+        status: FeedbackSummaryStatus;
     };
     [inspect.custom](_depth: any, options: InspectOptions): string;
 }
