@@ -175,36 +175,36 @@ class SemVer {
 
   // preminor will bump the version up to the next minor release, and immediately
   // down to pre-release. premajor and prepatch work the same way.
-  inc (release, identifier, identifierBase) {
+  inc (release, identifier) {
     switch (release) {
       case 'premajor':
         this.prerelease.length = 0
         this.patch = 0
         this.minor = 0
         this.major++
-        this.inc('pre', identifier, identifierBase)
+        this.inc('pre', identifier)
         break
       case 'preminor':
         this.prerelease.length = 0
         this.patch = 0
         this.minor++
-        this.inc('pre', identifier, identifierBase)
+        this.inc('pre', identifier)
         break
       case 'prepatch':
         // If this is already a prerelease, it will bump to the next version
         // drop any prereleases that might already exist, since they are not
         // relevant at this point.
         this.prerelease.length = 0
-        this.inc('patch', identifier, identifierBase)
-        this.inc('pre', identifier, identifierBase)
+        this.inc('patch', identifier)
+        this.inc('pre', identifier)
         break
       // If the input is a non-prerelease version, this acts the same as
       // prepatch.
       case 'prerelease':
         if (this.prerelease.length === 0) {
-          this.inc('patch', identifier, identifierBase)
+          this.inc('patch', identifier)
         }
-        this.inc('pre', identifier, identifierBase)
+        this.inc('pre', identifier)
         break
 
       case 'major':
@@ -263,15 +263,14 @@ class SemVer {
           }
         }
         if (identifier) {
-          const base = Number(identifierBase) ? 1 : 0
           // 1.2.0-beta.1 bumps to 1.2.0-beta.2,
           // 1.2.0-beta.fooblz or 1.2.0-beta bumps to 1.2.0-beta.0
           if (compareIdentifiers(this.prerelease[0], identifier) === 0) {
             if (isNaN(this.prerelease[1])) {
-              this.prerelease = [identifier, base]
+              this.prerelease = [identifier, 0]
             }
           } else {
-            this.prerelease = [identifier, base]
+            this.prerelease = [identifier, 0]
           }
         }
         break
