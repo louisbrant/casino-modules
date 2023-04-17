@@ -5,14 +5,12 @@ Check if [`argv`](https://nodejs.org/docs/latest/api/process.html#process_proces
 @param argv - CLI arguments. Default: `process.argv`.
 @returns Whether the flag exists.
 
-It correctly stops looking after an `--` argument terminator.
-
 @example
 ```
 // $ ts-node foo.ts -f --unicorn --foo=bar -- --rainbow
 
 // foo.ts
-import hasFlag from 'has-flag';
+import hasFlag = require('has-flag');
 
 hasFlag('unicorn');
 //=> true
@@ -36,4 +34,6 @@ hasFlag('rainbow');
 //=> false
 ```
 */
-export default function hasFlag(flag: string, argv?: readonly string[]): boolean;
+declare function hasFlag(flag: string, argv?: string[]): boolean;
+
+export = hasFlag;
